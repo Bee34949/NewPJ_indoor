@@ -1,0 +1,8 @@
+id,u,v,weight,kind,oneway
+E1,F1_A,F1_B,250,walk,false
+E2,F1_B,F1_C,300,walk,false
+E3,F1_B,F1_S,500,walk,false
+E4,F2_S,F2_A,40,walk,false
+E5,F2_A,F2_B,300,walk,false
+E6,F2_B,F2_C,300,walk,false
+E7,F1_S,F2_S,50,stairs,false

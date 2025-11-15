@@ -1,0 +1,5 @@
+{
+  "options": { "paths": { "mbtiles": "/data", "styles": "/data" } },
+  "data": { "indoor": { "mbtiles": "indoor.mbtiles" } },
+  "styles": { "indoor": { "style": "indoor-style.json" } }
+}

@@ -1,0 +1,9 @@
+id,x,y,floor_id,type,name
+F1_A,150,600,F1,corridor,corr N101
+F1_B,400,600,F1,corridor,corr N120
+F1_C,700,600,F1,door,door 1101
+F1_S,900,560,F1,connector,stairs S1
+F2_S,900,200,F2,connector,stairs S1
+F2_A,900,240,F2,corridor,corr N187
+F2_B,600,240,F2,corridor,corr N190
+F2_C,300,240,F2,door,door 2205

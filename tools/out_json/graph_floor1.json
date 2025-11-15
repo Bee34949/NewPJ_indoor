@@ -1,0 +1,1420 @@
+{
+  "floor": 1,
+  "nodes": [
+    {
+      "id": "custom_1758020878737",
+      "x": 2441.2646484375,
+      "y": 801.8875732421875,
+      "name": "ห้อง 2105",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758020970885",
+      "x": 2441.2646484375,
+      "y": 1048.7664794921875,
+      "name": "ห้อง 2106",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021067599",
+      "x": 2094.384033203125,
+      "y": 739.3865966796875,
+      "name": "ห้องวารสารต่างประเทศ",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021082517",
+      "x": 2091.259033203125,
+      "y": 923.7644653320312,
+      "name": "ห้อง2104",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021093147",
+      "x": 1806.879638671875,
+      "y": 798.7625122070312,
+      "name": "ห้องสมุด",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021143562",
+      "x": 1566.2508544921875,
+      "y": 933.1396484375,
+      "name": "ห้อง 2103",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021168809",
+      "x": 1563.1258544921875,
+      "y": 798.7625122070312,
+      "name": "ห้อง 2102",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021204556",
+      "x": 1366.2476806640625,
+      "y": 1011.265869140625,
+      "name": "ศูนย์เรียนรู้",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021247540",
+      "x": 2041.25830078125,
+      "y": 1248.76953125,
+      "name": "ห้องน้ำหญิง",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021270434",
+      "x": 1678.752685546875,
+      "y": 1251.8946533203125,
+      "name": "ห้องน้ำชาย",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021314442",
+      "x": 1572.5009765625,
+      "y": 1255.0196533203125,
+      "name": "ลิฟท์",
+      "type": "elevator",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021352420",
+      "x": 2285.01220703125,
+      "y": 717.51123046875,
+      "name": "บันได(ขวา)",
+      "type": "stairs",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021373835",
+      "x": 1481.87451171875,
+      "y": 680.0106811523438,
+      "name": "บันได(ซ้าย)",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758021393265",
+      "x": 2128.759765625,
+      "y": 1248.76953125,
+      "name": "บันไดโรงรถ",
+      "type": "stairs",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028286789",
+      "x": 2303.762451171875,
+      "y": 798.7625122070312,
+      "name": "01",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028296582",
+      "x": 2303.762451171875,
+      "y": 923.7644653320312,
+      "name": "02",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028306341",
+      "x": 2381.888671875,
+      "y": 1117.517578125,
+      "name": "03",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028317418",
+      "x": 2028.7581787109375,
+      "y": 989.3905029296875,
+      "name": "04",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028324194",
+      "x": 2031.8831787109375,
+      "y": 858.138427734375,
+      "name": "05",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028334497",
+      "x": 2106.88427734375,
+      "y": 1211.26904296875,
+      "name": "06",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028344356",
+      "x": 2072.5087890625,
+      "y": 1211.26904296875,
+      "name": "07",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028354458",
+      "x": 1647.5020751953125,
+      "y": 1211.26904296875,
+      "name": "08",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028365672",
+      "x": 1963.132080078125,
+      "y": 801.8875732421875,
+      "name": "09",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028388892",
+      "x": 1806.879638671875,
+      "y": 989.3905029296875,
+      "name": "10",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028397843",
+      "x": 1625.6268310546875,
+      "y": 873.763671875,
+      "name": "11",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028406394",
+      "x": 1597.5013427734375,
+      "y": 858.138427734375,
+      "name": "12",
+      "type": "room",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028421264",
+      "x": 1569.3758544921875,
+      "y": 1205.0189208984375,
+      "name": "13",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028436379",
+      "x": 1459.9991455078125,
+      "y": 1208.1439208984375,
+      "name": "14",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028445899",
+      "x": 1419.37353515625,
+      "y": 889.388916015625,
+      "name": "15",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028454883",
+      "x": 1309.996826171875,
+      "y": 1117.517578125,
+      "name": "16",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028477278",
+      "x": 1503.7498779296875,
+      "y": 708.1361083984375,
+      "name": "17",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "custom_1758028493306",
+      "x": 2260.01171875,
+      "y": 1208.1439208984375,
+      "name": "18",
+      "type": "door",
+      "floor": 1
+    },
+    {
+      "id": "N187",
+      "x": 1458.0,
+      "y": 633.0,
+      "name": "walk N187",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N188",
+      "x": 1458.0,
+      "y": 683.0,
+      "name": "walk N188",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N189",
+      "x": 1458.0,
+      "y": 733.0,
+      "name": "walk N189",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N190",
+      "x": 1458.0,
+      "y": 783.0,
+      "name": "walk N190",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N191",
+      "x": 1458.0,
+      "y": 833.0,
+      "name": "walk N191",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N192",
+      "x": 1458.0,
+      "y": 883.0,
+      "name": "walk N192",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N193",
+      "x": 1458.0,
+      "y": 933.0,
+      "name": "walk N193",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N194",
+      "x": 1458.0,
+      "y": 983.0,
+      "name": "walk N194",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N195",
+      "x": 1458.0,
+      "y": 1033.0,
+      "name": "walk N195",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N196",
+      "x": 1458.0,
+      "y": 1083.0,
+      "name": "walk N196",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N197",
+      "x": 1458.0,
+      "y": 1133.0,
+      "name": "walk N197",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N198",
+      "x": 1458.0,
+      "y": 1162.0,
+      "name": "walk N198",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N199",
+      "x": 1479.0,
+      "y": 1162.0,
+      "name": "walk N199",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N200",
+      "x": 1529.0,
+      "y": 1162.0,
+      "name": "walk N200",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N201",
+      "x": 1579.0,
+      "y": 1163.0,
+      "name": "walk N201",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N202",
+      "x": 1629.0,
+      "y": 1163.0,
+      "name": "walk N202",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N203",
+      "x": 1679.0,
+      "y": 1163.0,
+      "name": "walk N203",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N204",
+      "x": 1729.0,
+      "y": 1163.0,
+      "name": "walk N204",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N205",
+      "x": 1779.0,
+      "y": 1163.0,
+      "name": "walk N205",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N206",
+      "x": 1829.0,
+      "y": 1164.0,
+      "name": "walk N206",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N207",
+      "x": 1879.0,
+      "y": 1164.0,
+      "name": "walk N207",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N208",
+      "x": 1929.0,
+      "y": 1164.0,
+      "name": "walk N208",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N209",
+      "x": 1979.0,
+      "y": 1164.0,
+      "name": "walk N209",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N210",
+      "x": 2029.0,
+      "y": 1165.0,
+      "name": "walk N210",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N211",
+      "x": 2079.0,
+      "y": 1165.0,
+      "name": "walk N211",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N212",
+      "x": 2129.0,
+      "y": 1165.0,
+      "name": "walk N212",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N213",
+      "x": 2179.0,
+      "y": 1165.0,
+      "name": "walk N213",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N214",
+      "x": 2229.0,
+      "y": 1166.0,
+      "name": "walk N214",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N215",
+      "x": 2279.0,
+      "y": 1166.0,
+      "name": "walk N215",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N216",
+      "x": 2329.0,
+      "y": 1166.0,
+      "name": "walk N216",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N217",
+      "x": 2379.0,
+      "y": 1166.0,
+      "name": "walk N217",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N218",
+      "x": 2429.0,
+      "y": 1166.0,
+      "name": "walk N218",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N219",
+      "x": 2479.0,
+      "y": 1167.0,
+      "name": "walk N219",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N220",
+      "x": 2529.0,
+      "y": 1167.0,
+      "name": "walk N220",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N221",
+      "x": 2555.0,
+      "y": 1167.0,
+      "name": "walk N221",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N222",
+      "x": 2259.0,
+      "y": 615.0,
+      "name": "walk N222",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N223",
+      "x": 2259.0,
+      "y": 665.0,
+      "name": "walk N223",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N224",
+      "x": 2259.0,
+      "y": 715.0,
+      "name": "walk N224",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N225",
+      "x": 2259.0,
+      "y": 765.0,
+      "name": "walk N225",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N226",
+      "x": 2259.0,
+      "y": 815.0,
+      "name": "walk N226",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N227",
+      "x": 2259.0,
+      "y": 865.0,
+      "name": "walk N227",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N228",
+      "x": 2259.0,
+      "y": 915.0,
+      "name": "walk N228",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N229",
+      "x": 2259.0,
+      "y": 965.0,
+      "name": "walk N229",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N230",
+      "x": 2259.0,
+      "y": 1015.0,
+      "name": "walk N230",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N231",
+      "x": 2259.0,
+      "y": 1065.0,
+      "name": "walk N231",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N232",
+      "x": 2259.0,
+      "y": 1115.0,
+      "name": "walk N232",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N233",
+      "x": 1510.0,
+      "y": 1035.0,
+      "name": "walk N233",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N234",
+      "x": 1560.0,
+      "y": 1036.0,
+      "name": "walk N234",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N235",
+      "x": 1610.0,
+      "y": 1036.0,
+      "name": "walk N235",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N236",
+      "x": 1660.0,
+      "y": 1036.0,
+      "name": "walk N236",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N237",
+      "x": 1710.0,
+      "y": 1037.0,
+      "name": "walk N237",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N238",
+      "x": 1760.0,
+      "y": 1037.0,
+      "name": "walk N238",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N239",
+      "x": 1810.0,
+      "y": 1037.0,
+      "name": "walk N239",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N240",
+      "x": 1860.0,
+      "y": 1037.0,
+      "name": "walk N240",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N241",
+      "x": 1910.0,
+      "y": 1038.0,
+      "name": "walk N241",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N242",
+      "x": 1960.0,
+      "y": 1038.0,
+      "name": "walk N242",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N243",
+      "x": 2010.0,
+      "y": 1038.0,
+      "name": "walk N243",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N244",
+      "x": 2060.0,
+      "y": 1039.0,
+      "name": "walk N244",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N245",
+      "x": 2110.0,
+      "y": 1039.0,
+      "name": "walk N245",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N246",
+      "x": 2160.0,
+      "y": 1039.0,
+      "name": "walk N246",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N247",
+      "x": 2210.0,
+      "y": 1040.0,
+      "name": "walk N247",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N248",
+      "x": 2260.0,
+      "y": 1040.0,
+      "name": "walk N248",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N249",
+      "x": 1410.0,
+      "y": 1162.0,
+      "name": "walk N249",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N250",
+      "x": 1360.0,
+      "y": 1161.0,
+      "name": "walk N250",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N251",
+      "x": 1310.0,
+      "y": 1161.0,
+      "name": "walk N251",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N252",
+      "x": 1260.0,
+      "y": 1161.0,
+      "name": "walk N252",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N253",
+      "x": 1210.0,
+      "y": 1160.0,
+      "name": "walk N253",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N254",
+      "x": 1176.0,
+      "y": 1160.0,
+      "name": "walk N254",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N255",
+      "x": 1808.0,
+      "y": 986.0,
+      "name": "walk N255",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N256",
+      "x": 1808.0,
+      "y": 936.0,
+      "name": "walk N256",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N257",
+      "x": 1808.0,
+      "y": 886.0,
+      "name": "walk N257",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N258",
+      "x": 1808.0,
+      "y": 836.0,
+      "name": "walk N258",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N259",
+      "x": 1808.0,
+      "y": 787.0,
+      "name": "walk N259",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N260",
+      "x": 1859.0,
+      "y": 787.0,
+      "name": "walk N260",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N261",
+      "x": 1909.0,
+      "y": 788.0,
+      "name": "walk N261",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N262",
+      "x": 1959.0,
+      "y": 788.0,
+      "name": "walk N262",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N263",
+      "x": 2009.0,
+      "y": 789.0,
+      "name": "walk N263",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N264",
+      "x": 2033.0,
+      "y": 789.0,
+      "name": "walk N264",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N265",
+      "x": 2033.0,
+      "y": 815.0,
+      "name": "walk N265",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N266",
+      "x": 2033.0,
+      "y": 865.0,
+      "name": "walk N266",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N267",
+      "x": 2032.0,
+      "y": 915.0,
+      "name": "walk N267",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N268",
+      "x": 2032.0,
+      "y": 965.0,
+      "name": "walk N268",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N269",
+      "x": 2032.0,
+      "y": 1015.0,
+      "name": "walk N269",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N270",
+      "x": 1758.0,
+      "y": 872.0,
+      "name": "walk N270",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N271",
+      "x": 1708.0,
+      "y": 872.0,
+      "name": "walk N271",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N272",
+      "x": 1658.0,
+      "y": 872.0,
+      "name": "walk N272",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N273",
+      "x": 1608.0,
+      "y": 872.0,
+      "name": "walk N273",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N274",
+      "x": 1598.0,
+      "y": 832.0,
+      "name": "walk N274",
+      "type": "junction",
+      "floor": 1
+    },
+    {
+      "id": "N275",
+      "x": 1598.0,
+      "y": 812.0,
+      "name": "walk N275",
+      "type": "junction",
+      "floor": 1
+    }
+  ],
+  "edges": [
+    {
+      "from": "N187",
+      "to": "N188",
+      "weight": 50.0
+    },
+    {
+      "from": "N188",
+      "to": "N189",
+      "weight": 50.0
+    },
+    {
+      "from": "N189",
+      "to": "N190",
+      "weight": 50.0
+    },
+    {
+      "from": "N190",
+      "to": "N191",
+      "weight": 50.0
+    },
+    {
+      "from": "N191",
+      "to": "N192",
+      "weight": 50.0
+    },
+    {
+      "from": "N192",
+      "to": "N193",
+      "weight": 50.0
+    },
+    {
+      "from": "N193",
+      "to": "N194",
+      "weight": 50.0
+    },
+    {
+      "from": "N194",
+      "to": "N195",
+      "weight": 50.0
+    },
+    {
+      "from": "N195",
+      "to": "N196",
+      "weight": 50.0
+    },
+    {
+      "from": "N196",
+      "to": "N197",
+      "weight": 50.0
+    },
+    {
+      "from": "N197",
+      "to": "N198",
+      "weight": 29.0
+    },
+    {
+      "from": "N198",
+      "to": "N199",
+      "weight": 21.0
+    },
+    {
+      "from": "N199",
+      "to": "N200",
+      "weight": 50.0
+    },
+    {
+      "from": "N200",
+      "to": "N201",
+      "weight": 50.01
+    },
+    {
+      "from": "N201",
+      "to": "N202",
+      "weight": 50.0
+    },
+    {
+      "from": "N202",
+      "to": "N203",
+      "weight": 50.0
+    },
+    {
+      "from": "N203",
+      "to": "N204",
+      "weight": 50.0
+    },
+    {
+      "from": "N204",
+      "to": "N205",
+      "weight": 50.0
+    },
+    {
+      "from": "N205",
+      "to": "N206",
+      "weight": 50.01
+    },
+    {
+      "from": "N206",
+      "to": "N207",
+      "weight": 50.0
+    },
+    {
+      "from": "N207",
+      "to": "N208",
+      "weight": 50.0
+    },
+    {
+      "from": "N208",
+      "to": "N209",
+      "weight": 50.0
+    },
+    {
+      "from": "N209",
+      "to": "N210",
+      "weight": 50.01
+    },
+    {
+      "from": "N210",
+      "to": "N211",
+      "weight": 50.0
+    },
+    {
+      "from": "N211",
+      "to": "N212",
+      "weight": 50.0
+    },
+    {
+      "from": "N212",
+      "to": "N213",
+      "weight": 50.0
+    },
+    {
+      "from": "N213",
+      "to": "N214",
+      "weight": 50.01
+    },
+    {
+      "from": "N214",
+      "to": "N215",
+      "weight": 50.0
+    },
+    {
+      "from": "N215",
+      "to": "N216",
+      "weight": 50.0
+    },
+    {
+      "from": "N216",
+      "to": "N217",
+      "weight": 50.0
+    },
+    {
+      "from": "N217",
+      "to": "N218",
+      "weight": 50.0
+    },
+    {
+      "from": "N218",
+      "to": "N219",
+      "weight": 50.01
+    },
+    {
+      "from": "N219",
+      "to": "N220",
+      "weight": 50.0
+    },
+    {
+      "from": "N220",
+      "to": "N221",
+      "weight": 26.0
+    },
+    {
+      "from": "N222",
+      "to": "N223",
+      "weight": 50.0
+    },
+    {
+      "from": "N223",
+      "to": "N224",
+      "weight": 50.0
+    },
+    {
+      "from": "N224",
+      "to": "N225",
+      "weight": 50.0
+    },
+    {
+      "from": "N225",
+      "to": "N226",
+      "weight": 50.0
+    },
+    {
+      "from": "N226",
+      "to": "N227",
+      "weight": 50.0
+    },
+    {
+      "from": "N227",
+      "to": "N228",
+      "weight": 50.0
+    },
+    {
+      "from": "N228",
+      "to": "N229",
+      "weight": 50.0
+    },
+    {
+      "from": "N229",
+      "to": "N230",
+      "weight": 50.0
+    },
+    {
+      "from": "N230",
+      "to": "N231",
+      "weight": 50.0
+    },
+    {
+      "from": "N231",
+      "to": "N232",
+      "weight": 50.0
+    },
+    {
+      "from": "N232",
+      "to": "N215",
+      "weight": 54.781
+    },
+    {
+      "from": "N195",
+      "to": "N233",
+      "weight": 52.038
+    },
+    {
+      "from": "N233",
+      "to": "N234",
+      "weight": 50.01
+    },
+    {
+      "from": "N234",
+      "to": "N235",
+      "weight": 50.0
+    },
+    {
+      "from": "N235",
+      "to": "N236",
+      "weight": 50.0
+    },
+    {
+      "from": "N236",
+      "to": "N237",
+      "weight": 50.01
+    },
+    {
+      "from": "N237",
+      "to": "N238",
+      "weight": 50.0
+    },
+    {
+      "from": "N238",
+      "to": "N239",
+      "weight": 50.0
+    },
+    {
+      "from": "N239",
+      "to": "N240",
+      "weight": 50.0
+    },
+    {
+      "from": "N240",
+      "to": "N241",
+      "weight": 50.01
+    },
+    {
+      "from": "N241",
+      "to": "N242",
+      "weight": 50.0
+    },
+    {
+      "from": "N242",
+      "to": "N243",
+      "weight": 50.0
+    },
+    {
+      "from": "N243",
+      "to": "N244",
+      "weight": 50.01
+    },
+    {
+      "from": "N244",
+      "to": "N245",
+      "weight": 50.0
+    },
+    {
+      "from": "N245",
+      "to": "N246",
+      "weight": 50.0
+    },
+    {
+      "from": "N246",
+      "to": "N247",
+      "weight": 50.01
+    },
+    {
+      "from": "N247",
+      "to": "N248",
+      "weight": 50.0
+    },
+    {
+      "from": "N198",
+      "to": "N249",
+      "weight": 48.0
+    },
+    {
+      "from": "N249",
+      "to": "N250",
+      "weight": 50.01
+    },
+    {
+      "from": "N250",
+      "to": "N251",
+      "weight": 50.0
+    },
+    {
+      "from": "N251",
+      "to": "N252",
+      "weight": 50.0
+    },
+    {
+      "from": "N252",
+      "to": "N253",
+      "weight": 50.01
+    },
+    {
+      "from": "N253",
+      "to": "N254",
+      "weight": 34.0
+    },
+    {
+      "from": "N239",
+      "to": "N255",
+      "weight": 51.039
+    },
+    {
+      "from": "N255",
+      "to": "N256",
+      "weight": 50.0
+    },
+    {
+      "from": "N256",
+      "to": "N257",
+      "weight": 50.0
+    },
+    {
+      "from": "N257",
+      "to": "N258",
+      "weight": 50.0
+    },
+    {
+      "from": "N258",
+      "to": "N259",
+      "weight": 49.0
+    },
+    {
+      "from": "N259",
+      "to": "N260",
+      "weight": 51.0
+    },
+    {
+      "from": "N260",
+      "to": "N261",
+      "weight": 50.01
+    },
+    {
+      "from": "N261",
+      "to": "N262",
+      "weight": 50.0
+    },
+    {
+      "from": "N262",
+      "to": "N263",
+      "weight": 50.01
+    },
+    {
+      "from": "N263",
+      "to": "N264",
+      "weight": 24.0
+    },
+    {
+      "from": "N264",
+      "to": "N265",
+      "weight": 26.0
+    },
+    {
+      "from": "N265",
+      "to": "N266",
+      "weight": 50.0
+    },
+    {
+      "from": "N266",
+      "to": "N267",
+      "weight": 50.01
+    },
+    {
+      "from": "N267",
+      "to": "N268",
+      "weight": 50.0
+    },
+    {
+      "from": "N268",
+      "to": "N269",
+      "weight": 50.0
+    },
+    {
+      "from": "N269",
+      "to": "N243",
+      "weight": 31.828
+    },
+    {
+      "from": "N257",
+      "to": "N270",
+      "weight": 51.923
+    },
+    {
+      "from": "N270",
+      "to": "N271",
+      "weight": 50.0
+    },
+    {
+      "from": "N271",
+      "to": "N272",
+      "weight": 50.0
+    },
+    {
+      "from": "N272",
+      "to": "N273",
+      "weight": 50.0
+    },
+    {
+      "from": "N273",
+      "to": "N274",
+      "weight": 41.231
+    },
+    {
+      "from": "N274",
+      "to": "N275",
+      "weight": 20.0
+    }
+  ]
+}

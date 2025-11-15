@@ -1,0 +1,1342 @@
+{
+  "floor": 2,
+  "nodes": [
+    {
+      "id": "ห้อง2205",
+      "x": 2573.0,
+      "y": 696.0,
+      "name": "ห้อง2205",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้อง 2204",
+      "x": 2073.0,
+      "y": 511.0,
+      "name": "ห้อง 2204",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้อง 2203",
+      "x": 2076.0,
+      "y": 868.0,
+      "name": "ห้อง 2203",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องปฏิบัติการ 4",
+      "x": 1748.0,
+      "y": 499.0,
+      "name": "ห้องปฏิบัติการ 4",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องปฏิบัติการ 5",
+      "x": 1748.0,
+      "y": 708.0,
+      "name": "ห้องปฏิบัติการ 5",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องปฏิบัติการ 6",
+      "x": 1744.0,
+      "y": 918.0,
+      "name": "ห้องปฏิบัติการ 6",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องปฏิบัติการ 3",
+      "x": 1394.0,
+      "y": 499.0,
+      "name": "ห้องปฏิบัติการ 3",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องปฏิบัติการ 2",
+      "x": 1397.0,
+      "y": 724.0,
+      "name": "ห้องปฏิบัติการ 2",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องปฏิบัติการ 1",
+      "x": 1397.0,
+      "y": 911.0,
+      "name": "ห้องปฏิบัติการ 1",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องน้ำหญิง",
+      "x": 1957.0,
+      "y": 1252.0,
+      "name": "ห้องน้ำหญิง",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องน้ำชาย",
+      "x": 1523.0,
+      "y": 1261.0,
+      "name": "ห้องน้ำชาย",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ลิฟท์ ชั้น2",
+      "x": 1335.0,
+      "y": 1258.0,
+      "name": "ลิฟท์ ชั้น2",
+      "type": "elevator",
+      "floor": 2
+    },
+    {
+      "id": "ห้อง 2201",
+      "x": 1032.0,
+      "y": 986.0,
+      "name": "ห้อง 2201",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "MS1",
+      "x": 1029.0,
+      "y": 1333.0,
+      "name": "MS1",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "MS2",
+      "x": 822.0,
+      "y": 1336.0,
+      "name": "MS2",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "MS3",
+      "x": 1022.0,
+      "y": 1693.0,
+      "name": "MS3",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "MS4",
+      "x": 1301.0,
+      "y": 1639.0,
+      "name": "MS4",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "MS5",
+      "x": 1523.0,
+      "y": 1618.0,
+      "name": "MS5",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ชมรมวัสดุศาสตร์",
+      "x": 1510.0,
+      "y": 1893.0,
+      "name": "ชมรมวัสดุศาสตร์",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "ห้องครุภัณฑ์",
+      "x": 1304.0,
+      "y": 1833.0,
+      "name": "ห้องครุภัณฑ์",
+      "type": "room",
+      "floor": 2
+    },
+    {
+      "id": "บันไดขวา",
+      "x": 2323.0,
+      "y": 424.0,
+      "name": "บันไดขวา",
+      "type": "stair",
+      "floor": 2
+    },
+    {
+      "id": "บันไดซ้าย",
+      "x": 1188.0,
+      "y": 508.0,
+      "name": "บันไดซ้าย",
+      "type": "stair",
+      "floor": 2
+    },
+    {
+      "id": "ประตู2205 1",
+      "x": 2385.0,
+      "y": 668.0,
+      "name": "ประตู2205 1",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "ประตู 2205 2",
+      "x": 2382.0,
+      "y": 749.0,
+      "name": "ประตู 2205 2",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "2203",
+      "x": 2260.0,
+      "y": 749.0,
+      "name": "2203",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "2204",
+      "x": 2260.0,
+      "y": 671.0,
+      "name": "2204",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "main",
+      "x": 1566.0,
+      "y": 1074.0,
+      "name": "main",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "lab2",
+      "x": 1529.0,
+      "y": 664.0,
+      "name": "lab2",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "lab1",
+      "x": 1485.0,
+      "y": 780.0,
+      "name": "lab1",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "lab3",
+      "x": 1535.0,
+      "y": 586.0,
+      "name": "lab3",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "lab4",
+      "x": 1604.0,
+      "y": 586.0,
+      "name": "lab4",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "lab5",
+      "x": 1601.0,
+      "y": 668.0,
+      "name": "lab5",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "lab6",
+      "x": 1651.0,
+      "y": 780.0,
+      "name": "lab6",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N034",
+      "x": 919.0,
+      "y": 1074.0,
+      "name": "Door N034",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N035",
+      "x": 1122.0,
+      "y": 1168.0,
+      "name": "Door N035",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N036",
+      "x": 2060.0,
+      "y": 1199.0,
+      "name": "Door N036",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N037",
+      "x": 1447.0,
+      "y": 1199.0,
+      "name": "Door N037",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N038",
+      "x": 1335.0,
+      "y": 1202.0,
+      "name": "Door N038",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N039",
+      "x": 1185.0,
+      "y": 1199.0,
+      "name": "Door N039",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N040",
+      "x": 1241.0,
+      "y": 1511.0,
+      "name": "Door N040",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N041",
+      "x": 1444.0,
+      "y": 1627.0,
+      "name": "Door N041",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N042",
+      "x": 1347.0,
+      "y": 1724.0,
+      "name": "Door N042",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N043",
+      "x": 1347.0,
+      "y": 1758.0,
+      "name": "Door N043",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N044",
+      "x": 1376.0,
+      "y": 1858.0,
+      "name": "Door N044",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N045",
+      "x": 872.0,
+      "y": 1214.0,
+      "name": "Door N045",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N046",
+      "x": 935.0,
+      "y": 1252.0,
+      "name": "Door N046",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "Door N047",
+      "x": 1016.0,
+      "y": 1568.0,
+      "name": "Door N047",
+      "type": "door",
+      "floor": 2
+    },
+    {
+      "id": "walk N276",
+      "x": 1184.0,
+      "y": 591.0,
+      "name": "walk N276",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N277",
+      "x": 1184.0,
+      "y": 641.0,
+      "name": "walk N277",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N278",
+      "x": 1184.0,
+      "y": 691.0,
+      "name": "walk N278",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N279",
+      "x": 1184.0,
+      "y": 741.0,
+      "name": "walk N279",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N280",
+      "x": 1184.0,
+      "y": 791.0,
+      "name": "walk N280",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N281",
+      "x": 1184.0,
+      "y": 841.0,
+      "name": "walk N281",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N282",
+      "x": 1184.0,
+      "y": 891.0,
+      "name": "walk N282",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N283",
+      "x": 1184.0,
+      "y": 941.0,
+      "name": "walk N283",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N284",
+      "x": 1184.0,
+      "y": 991.0,
+      "name": "walk N284",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N285",
+      "x": 1184.0,
+      "y": 1041.0,
+      "name": "walk N285",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N286",
+      "x": 1184.0,
+      "y": 1091.0,
+      "name": "walk N286",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N287",
+      "x": 1184.0,
+      "y": 1141.0,
+      "name": "walk N287",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N288",
+      "x": 1184.0,
+      "y": 1175.0,
+      "name": "walk N288",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N289",
+      "x": 1200.0,
+      "y": 1175.0,
+      "name": "walk N289",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N290",
+      "x": 1250.0,
+      "y": 1175.0,
+      "name": "walk N290",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N291",
+      "x": 1300.0,
+      "y": 1175.0,
+      "name": "walk N291",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N292",
+      "x": 1350.0,
+      "y": 1175.0,
+      "name": "walk N292",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N293",
+      "x": 1400.0,
+      "y": 1175.0,
+      "name": "walk N293",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N294",
+      "x": 1450.0,
+      "y": 1175.0,
+      "name": "walk N294",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N295",
+      "x": 1500.0,
+      "y": 1175.0,
+      "name": "walk N295",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N296",
+      "x": 1550.0,
+      "y": 1175.0,
+      "name": "walk N296",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N297",
+      "x": 1600.0,
+      "y": 1175.0,
+      "name": "walk N297",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N298",
+      "x": 1650.0,
+      "y": 1175.0,
+      "name": "walk N298",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N299",
+      "x": 1700.0,
+      "y": 1175.0,
+      "name": "walk N299",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N300",
+      "x": 1750.0,
+      "y": 1175.0,
+      "name": "walk N300",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N301",
+      "x": 1800.0,
+      "y": 1175.0,
+      "name": "walk N301",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N302",
+      "x": 1850.0,
+      "y": 1175.0,
+      "name": "walk N302",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N303",
+      "x": 1900.0,
+      "y": 1175.0,
+      "name": "walk N303",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N304",
+      "x": 1950.0,
+      "y": 1175.0,
+      "name": "walk N304",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N305",
+      "x": 2000.0,
+      "y": 1175.0,
+      "name": "walk N305",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N306",
+      "x": 2050.0,
+      "y": 1175.0,
+      "name": "walk N306",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N307",
+      "x": 2100.0,
+      "y": 1175.0,
+      "name": "walk N307",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N308",
+      "x": 2150.0,
+      "y": 1175.0,
+      "name": "walk N308",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N309",
+      "x": 2200.0,
+      "y": 1175.0,
+      "name": "walk N309",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N310",
+      "x": 2250.0,
+      "y": 1175.0,
+      "name": "walk N310",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N311",
+      "x": 2300.0,
+      "y": 1175.0,
+      "name": "walk N311",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N312",
+      "x": 2328.0,
+      "y": 1175.0,
+      "name": "walk N312",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N313",
+      "x": 2328.0,
+      "y": 1153.0,
+      "name": "walk N313",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N314",
+      "x": 2328.0,
+      "y": 1103.0,
+      "name": "walk N314",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N315",
+      "x": 2327.0,
+      "y": 1053.0,
+      "name": "walk N315",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N316",
+      "x": 2327.0,
+      "y": 1003.0,
+      "name": "walk N316",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N317",
+      "x": 2327.0,
+      "y": 953.0,
+      "name": "walk N317",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N318",
+      "x": 2327.0,
+      "y": 903.0,
+      "name": "walk N318",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N319",
+      "x": 2327.0,
+      "y": 853.0,
+      "name": "walk N319",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N320",
+      "x": 2326.0,
+      "y": 803.0,
+      "name": "walk N320",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N321",
+      "x": 2326.0,
+      "y": 753.0,
+      "name": "walk N321",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N322",
+      "x": 2326.0,
+      "y": 703.0,
+      "name": "walk N322",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N323",
+      "x": 2326.0,
+      "y": 653.0,
+      "name": "walk N323",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N324",
+      "x": 2326.0,
+      "y": 603.0,
+      "name": "walk N324",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N325",
+      "x": 2325.0,
+      "y": 553.0,
+      "name": "walk N325",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N326",
+      "x": 2325.0,
+      "y": 503.0,
+      "name": "walk N326",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N327",
+      "x": 2325.0,
+      "y": 488.0,
+      "name": "walk N327",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N328",
+      "x": 1569.0,
+      "y": 1128.0,
+      "name": "walk N328",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N329",
+      "x": 1570.0,
+      "y": 1078.0,
+      "name": "walk N329",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N330",
+      "x": 1570.0,
+      "y": 1028.0,
+      "name": "walk N330",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N331",
+      "x": 1571.0,
+      "y": 978.0,
+      "name": "walk N331",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N332",
+      "x": 1571.0,
+      "y": 928.0,
+      "name": "walk N332",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N333",
+      "x": 1572.0,
+      "y": 878.0,
+      "name": "walk N333",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N334",
+      "x": 1572.0,
+      "y": 828.0,
+      "name": "walk N334",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N335",
+      "x": 1573.0,
+      "y": 778.0,
+      "name": "walk N335",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N336",
+      "x": 1573.0,
+      "y": 728.0,
+      "name": "walk N336",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N337",
+      "x": 1574.0,
+      "y": 678.0,
+      "name": "walk N337",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N338",
+      "x": 1574.0,
+      "y": 628.0,
+      "name": "walk N338",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N339",
+      "x": 1575.0,
+      "y": 578.0,
+      "name": "walk N339",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N340",
+      "x": 1525.0,
+      "y": 580.0,
+      "name": "walk N340",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N341",
+      "x": 1494.0,
+      "y": 581.0,
+      "name": "walk N341",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N342",
+      "x": 1513.0,
+      "y": 581.0,
+      "name": "walk N342",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N343",
+      "x": 1563.0,
+      "y": 582.0,
+      "name": "walk N343",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N344",
+      "x": 1613.0,
+      "y": 583.0,
+      "name": "walk N344",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N345",
+      "x": 1663.0,
+      "y": 584.0,
+      "name": "walk N345",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N346",
+      "x": 1503.0,
+      "y": 663.0,
+      "name": "walk N346",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N347",
+      "x": 1553.0,
+      "y": 663.0,
+      "name": "walk N347",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N348",
+      "x": 1603.0,
+      "y": 663.0,
+      "name": "walk N348",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N349",
+      "x": 1653.0,
+      "y": 663.0,
+      "name": "walk N349",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N350",
+      "x": 1492.0,
+      "y": 713.0,
+      "name": "walk N350",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N351",
+      "x": 1491.0,
+      "y": 763.0,
+      "name": "walk N351",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N352",
+      "x": 1489.0,
+      "y": 813.0,
+      "name": "walk N352",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N353",
+      "x": 1488.0,
+      "y": 841.0,
+      "name": "walk N353",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N354",
+      "x": 1653.0,
+      "y": 703.0,
+      "name": "walk N354",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N355",
+      "x": 1653.0,
+      "y": 753.0,
+      "name": "walk N355",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N356",
+      "x": 1653.0,
+      "y": 803.0,
+      "name": "walk N356",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N357",
+      "x": 1653.0,
+      "y": 825.0,
+      "name": "walk N357",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N358",
+      "x": 1184.0,
+      "y": 1231.0,
+      "name": "walk N358",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N359",
+      "x": 1184.0,
+      "y": 1281.0,
+      "name": "walk N359",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N360",
+      "x": 1184.0,
+      "y": 1331.0,
+      "name": "walk N360",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N361",
+      "x": 1184.0,
+      "y": 1381.0,
+      "name": "walk N361",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N362",
+      "x": 1184.0,
+      "y": 1431.0,
+      "name": "walk N362",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N363",
+      "x": 1184.0,
+      "y": 1481.0,
+      "name": "walk N363",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N364",
+      "x": 1184.0,
+      "y": 1509.0,
+      "name": "walk N364",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N365",
+      "x": 1206.0,
+      "y": 1509.0,
+      "name": "walk N365",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N366",
+      "x": 1256.0,
+      "y": 1510.0,
+      "name": "walk N366",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N367",
+      "x": 1306.0,
+      "y": 1511.0,
+      "name": "walk N367",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N368",
+      "x": 1356.0,
+      "y": 1512.0,
+      "name": "walk N368",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N369",
+      "x": 1400.0,
+      "y": 1513.0,
+      "name": "walk N369",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N370",
+      "x": 1399.0,
+      "y": 1569.0,
+      "name": "walk N370",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N371",
+      "x": 1398.0,
+      "y": 1619.0,
+      "name": "walk N371",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N372",
+      "x": 1397.0,
+      "y": 1669.0,
+      "name": "walk N372",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N373",
+      "x": 1396.0,
+      "y": 1719.0,
+      "name": "walk N373",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N374",
+      "x": 1395.0,
+      "y": 1769.0,
+      "name": "walk N374",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N375",
+      "x": 1394.0,
+      "y": 1803.0,
+      "name": "walk N375",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N376",
+      "x": 1131.0,
+      "y": 1174.0,
+      "name": "walk N376",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N377",
+      "x": 1081.0,
+      "y": 1173.0,
+      "name": "walk N377",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N378",
+      "x": 1031.0,
+      "y": 1173.0,
+      "name": "walk N378",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N379",
+      "x": 988.0,
+      "y": 1172.0,
+      "name": "walk N379",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N380",
+      "x": 988.0,
+      "y": 1115.0,
+      "name": "walk N380",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N381",
+      "x": 988.0,
+      "y": 1094.0,
+      "name": "walk N381",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N382",
+      "x": 959.0,
+      "y": 1096.0,
+      "name": "walk N382",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N383",
+      "x": 909.0,
+      "y": 1099.0,
+      "name": "walk N383",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N384",
+      "x": 900.0,
+      "y": 1141.0,
+      "name": "walk N384",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N385",
+      "x": 901.0,
+      "y": 1191.0,
+      "name": "walk N385",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N386",
+      "x": 901.0,
+      "y": 1241.0,
+      "name": "walk N386",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N387",
+      "x": 901.0,
+      "y": 1291.0,
+      "name": "walk N387",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N388",
+      "x": 902.0,
+      "y": 1341.0,
+      "name": "walk N388",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N389",
+      "x": 902.0,
+      "y": 1391.0,
+      "name": "walk N389",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N390",
+      "x": 902.0,
+      "y": 1441.0,
+      "name": "walk N390",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N391",
+      "x": 903.0,
+      "y": 1491.0,
+      "name": "walk N391",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N392",
+      "x": 903.0,
+      "y": 1531.0,
+      "name": "walk N392",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N393",
+      "x": 963.0,
+      "y": 1530.0,
+      "name": "walk N393",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N394",
+      "x": 1013.0,
+      "y": 1528.0,
+      "name": "walk N394",
+      "type": "junction",
+      "floor": 2
+    },
+    {
+      "id": "walk N395",
+      "x": 1028.0,
+      "y": 1528.0,
+      "name": "walk N395",
+      "type": "junction",
+      "floor": 2
+    }
+  ],
+  "edges": []
+}

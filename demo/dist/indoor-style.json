@@ -1,0 +1,17 @@
+{
+  "version": 8,
+  "sources": { "indoor": { "type": "vector", "url": "mbtiles://indoor" } },
+  "layers": [
+    { "id": "bg", "type": "background", "paint": { "background-color": "#eef0f2" } },
+    { "id": "rooms-fill", "type": "fill", "source": "indoor", "source-layer": "rooms",
+      "paint": { "fill-color": "#9fb3c8", "fill-opacity": 0.28 } },
+    { "id": "rooms-outline", "type": "line", "source": "indoor", "source-layer": "rooms",
+      "paint": { "line-color": "#637185", "line-width": 0.8 } },
+    { "id": "walls", "type": "line", "source": "indoor", "source-layer": "features",
+      "filter": ["==", ["get","group"], "wall"],
+      "paint": { "line-color": "#111", "line-width": 2 } },
+    { "id": "doors", "type": "circle", "source": "indoor", "source-layer": "features",
+      "filter": ["==", ["get","group"], "door"],
+      "paint": { "circle-radius": 3, "circle-color": "#000", "circle-stroke-color": "#fff", "circle-stroke-width": 0.6 } }
+  ]
+}

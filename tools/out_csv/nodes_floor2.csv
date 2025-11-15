@@ -1,0 +1,168 @@
+id,x,y,name,type,floor
+ห้อง2205,2573.0,696.0,ห้อง2205,room,2
+ห้อง 2204,2073.0,511.0,ห้อง 2204,room,2
+ห้อง 2203,2076.0,868.0,ห้อง 2203,room,2
+ห้องปฏิบัติการ 4,1748.0,499.0,ห้องปฏิบัติการ 4,room,2
+ห้องปฏิบัติการ 5,1748.0,708.0,ห้องปฏิบัติการ 5,room,2
+ห้องปฏิบัติการ 6,1744.0,918.0,ห้องปฏิบัติการ 6,room,2
+ห้องปฏิบัติการ 3,1394.0,499.0,ห้องปฏิบัติการ 3,room,2
+ห้องปฏิบัติการ 2,1397.0,724.0,ห้องปฏิบัติการ 2,room,2
+ห้องปฏิบัติการ 1,1397.0,911.0,ห้องปฏิบัติการ 1,room,2
+ห้องน้ำหญิง,1957.0,1252.0,ห้องน้ำหญิง,room,2
+ห้องน้ำชาย,1523.0,1261.0,ห้องน้ำชาย,room,2
+ลิฟท์ ชั้น2,1335.0,1258.0,ลิฟท์ ชั้น2,elevator,2
+ห้อง 2201,1032.0,986.0,ห้อง 2201,room,2
+MS1,1029.0,1333.0,MS1,room,2
+MS2,822.0,1336.0,MS2,room,2
+MS3,1022.0,1693.0,MS3,room,2
+MS4,1301.0,1639.0,MS4,room,2
+MS5,1523.0,1618.0,MS5,room,2
+ชมรมวัสดุศาสตร์,1510.0,1893.0,ชมรมวัสดุศาสตร์,room,2
+ห้องครุภัณฑ์,1304.0,1833.0,ห้องครุภัณฑ์,room,2
+บันไดขวา,2323.0,424.0,บันไดขวา,stair,2
+บันไดซ้าย,1188.0,508.0,บันไดซ้าย,stair,2
+ประตู2205 1,2385.0,668.0,ประตู2205 1,door,2
+ประตู 2205 2,2382.0,749.0,ประตู 2205 2,door,2
+2203,2260.0,749.0,2203,door,2
+2204,2260.0,671.0,2204,door,2
+main,1566.0,1074.0,main,door,2
+lab2,1529.0,664.0,lab2,door,2
+lab1,1485.0,780.0,lab1,door,2
+lab3,1535.0,586.0,lab3,door,2
+lab4,1604.0,586.0,lab4,door,2
+lab5,1601.0,668.0,lab5,door,2
+lab6,1651.0,780.0,lab6,door,2
+Door N034,919.0,1074.0,Door N034,door,2
+Door N035,1122.0,1168.0,Door N035,door,2
+Door N036,2060.0,1199.0,Door N036,door,2
+Door N037,1447.0,1199.0,Door N037,door,2
+Door N038,1335.0,1202.0,Door N038,door,2
+Door N039,1185.0,1199.0,Door N039,door,2
+Door N040,1241.0,1511.0,Door N040,door,2
+Door N041,1444.0,1627.0,Door N041,door,2
+Door N042,1347.0,1724.0,Door N042,door,2
+Door N043,1347.0,1758.0,Door N043,door,2
+Door N044,1376.0,1858.0,Door N044,door,2
+Door N045,872.0,1214.0,Door N045,door,2
+Door N046,935.0,1252.0,Door N046,door,2
+Door N047,1016.0,1568.0,Door N047,door,2
+walk N276,1184.0,591.0,walk N276,junction,2
+walk N277,1184.0,641.0,walk N277,junction,2
+walk N278,1184.0,691.0,walk N278,junction,2
+walk N279,1184.0,741.0,walk N279,junction,2
+walk N280,1184.0,791.0,walk N280,junction,2
+walk N281,1184.0,841.0,walk N281,junction,2
+walk N282,1184.0,891.0,walk N282,junction,2
+walk N283,1184.0,941.0,walk N283,junction,2
+walk N284,1184.0,991.0,walk N284,junction,2
+walk N285,1184.0,1041.0,walk N285,junction,2
+walk N286,1184.0,1091.0,walk N286,junction,2
+walk N287,1184.0,1141.0,walk N287,junction,2
+walk N288,1184.0,1175.0,walk N288,junction,2
+walk N289,1200.0,1175.0,walk N289,junction,2
+walk N290,1250.0,1175.0,walk N290,junction,2
+walk N291,1300.0,1175.0,walk N291,junction,2
+walk N292,1350.0,1175.0,walk N292,junction,2
+walk N293,1400.0,1175.0,walk N293,junction,2
+walk N294,1450.0,1175.0,walk N294,junction,2
+walk N295,1500.0,1175.0,walk N295,junction,2
+walk N296,1550.0,1175.0,walk N296,junction,2
+walk N297,1600.0,1175.0,walk N297,junction,2
+walk N298,1650.0,1175.0,walk N298,junction,2
+walk N299,1700.0,1175.0,walk N299,junction,2
+walk N300,1750.0,1175.0,walk N300,junction,2
+walk N301,1800.0,1175.0,walk N301,junction,2
+walk N302,1850.0,1175.0,walk N302,junction,2
+walk N303,1900.0,1175.0,walk N303,junction,2
+walk N304,1950.0,1175.0,walk N304,junction,2
+walk N305,2000.0,1175.0,walk N305,junction,2
+walk N306,2050.0,1175.0,walk N306,junction,2
+walk N307,2100.0,1175.0,walk N307,junction,2
+walk N308,2150.0,1175.0,walk N308,junction,2
+walk N309,2200.0,1175.0,walk N309,junction,2
+walk N310,2250.0,1175.0,walk N310,junction,2
+walk N311,2300.0,1175.0,walk N311,junction,2
+walk N312,2328.0,1175.0,walk N312,junction,2
+walk N313,2328.0,1153.0,walk N313,junction,2
+walk N314,2328.0,1103.0,walk N314,junction,2
+walk N315,2327.0,1053.0,walk N315,junction,2
+walk N316,2327.0,1003.0,walk N316,junction,2
+walk N317,2327.0,953.0,walk N317,junction,2
+walk N318,2327.0,903.0,walk N318,junction,2
+walk N319,2327.0,853.0,walk N319,junction,2
+walk N320,2326.0,803.0,walk N320,junction,2
+walk N321,2326.0,753.0,walk N321,junction,2
+walk N322,2326.0,703.0,walk N322,junction,2
+walk N323,2326.0,653.0,walk N323,junction,2
+walk N324,2326.0,603.0,walk N324,junction,2
+walk N325,2325.0,553.0,walk N325,junction,2
+walk N326,2325.0,503.0,walk N326,junction,2
+walk N327,2325.0,488.0,walk N327,junction,2
+walk N328,1569.0,1128.0,walk N328,junction,2
+walk N329,1570.0,1078.0,walk N329,junction,2
+walk N330,1570.0,1028.0,walk N330,junction,2
+walk N331,1571.0,978.0,walk N331,junction,2
+walk N332,1571.0,928.0,walk N332,junction,2
+walk N333,1572.0,878.0,walk N333,junction,2
+walk N334,1572.0,828.0,walk N334,junction,2
+walk N335,1573.0,778.0,walk N335,junction,2
+walk N336,1573.0,728.0,walk N336,junction,2
+walk N337,1574.0,678.0,walk N337,junction,2
+walk N338,1574.0,628.0,walk N338,junction,2
+walk N339,1575.0,578.0,walk N339,junction,2
+walk N340,1525.0,580.0,walk N340,junction,2
+walk N341,1494.0,581.0,walk N341,junction,2
+walk N342,1513.0,581.0,walk N342,junction,2
+walk N343,1563.0,582.0,walk N343,junction,2
+walk N344,1613.0,583.0,walk N344,junction,2
+walk N345,1663.0,584.0,walk N345,junction,2
+walk N346,1503.0,663.0,walk N346,junction,2
+walk N347,1553.0,663.0,walk N347,junction,2
+walk N348,1603.0,663.0,walk N348,junction,2
+walk N349,1653.0,663.0,walk N349,junction,2
+walk N350,1492.0,713.0,walk N350,junction,2
+walk N351,1491.0,763.0,walk N351,junction,2
+walk N352,1489.0,813.0,walk N352,junction,2
+walk N353,1488.0,841.0,walk N353,junction,2
+walk N354,1653.0,703.0,walk N354,junction,2
+walk N355,1653.0,753.0,walk N355,junction,2
+walk N356,1653.0,803.0,walk N356,junction,2
+walk N357,1653.0,825.0,walk N357,junction,2
+walk N358,1184.0,1231.0,walk N358,junction,2
+walk N359,1184.0,1281.0,walk N359,junction,2
+walk N360,1184.0,1331.0,walk N360,junction,2
+walk N361,1184.0,1381.0,walk N361,junction,2
+walk N362,1184.0,1431.0,walk N362,junction,2
+walk N363,1184.0,1481.0,walk N363,junction,2
+walk N364,1184.0,1509.0,walk N364,junction,2
+walk N365,1206.0,1509.0,walk N365,junction,2
+walk N366,1256.0,1510.0,walk N366,junction,2
+walk N367,1306.0,1511.0,walk N367,junction,2
+walk N368,1356.0,1512.0,walk N368,junction,2
+walk N369,1400.0,1513.0,walk N369,junction,2
+walk N370,1399.0,1569.0,walk N370,junction,2
+walk N371,1398.0,1619.0,walk N371,junction,2
+walk N372,1397.0,1669.0,walk N372,junction,2
+walk N373,1396.0,1719.0,walk N373,junction,2
+walk N374,1395.0,1769.0,walk N374,junction,2
+walk N375,1394.0,1803.0,walk N375,junction,2
+walk N376,1131.0,1174.0,walk N376,junction,2
+walk N377,1081.0,1173.0,walk N377,junction,2
+walk N378,1031.0,1173.0,walk N378,junction,2
+walk N379,988.0,1172.0,walk N379,junction,2
+walk N380,988.0,1115.0,walk N380,junction,2
+walk N381,988.0,1094.0,walk N381,junction,2
+walk N382,959.0,1096.0,walk N382,junction,2
+walk N383,909.0,1099.0,walk N383,junction,2
+walk N384,900.0,1141.0,walk N384,junction,2
+walk N385,901.0,1191.0,walk N385,junction,2
+walk N386,901.0,1241.0,walk N386,junction,2
+walk N387,901.0,1291.0,walk N387,junction,2
+walk N388,902.0,1341.0,walk N388,junction,2
+walk N389,902.0,1391.0,walk N389,junction,2
+walk N390,902.0,1441.0,walk N390,junction,2
+walk N391,903.0,1491.0,walk N391,junction,2
+walk N392,903.0,1531.0,walk N392,junction,2
+walk N393,963.0,1530.0,walk N393,junction,2
+walk N394,1013.0,1528.0,walk N394,junction,2
+walk N395,1028.0,1528.0,walk N395,junction,2
