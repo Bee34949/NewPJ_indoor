@@ -1,5 +1,18 @@
 import { FLOORS } from './graph.js';
+import { uuidv4 } from './positioning.js';
 
+export async function loadNodes(url){
+  const res = await fetch(url, {cache:'no-store'});
+  if(!res.ok) throw new Error('nodes fetch fail');
+  const fc = await res.json();
+  for (const f of (fc.features||[])) {
+    const p = (f.properties ||= {});
+    p.uuid = p.uuid || uuidv4();         // ensure uuid
+    p.type = String(p.type||'node');     // normalize
+    p.floor = String(p.floor||'');
+  }
+  return { fc };
+}
 export function buildDoorIndex(byFloor){
   const idx=new Map();
   for(const f of FLOORS){
