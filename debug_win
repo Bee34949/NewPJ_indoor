@@ -1,0 +1,258 @@
+ 
+Interface name : Wi-Fi 
+There are 4 networks currently visible. 
+
+SSID 1 : OTIZ Room
+    Network type            : Infrastructure
+    Authentication          : Open
+    Encryption              : None 
+    BSSID 1                 : 9e:ba:5f:2f:8b:24
+         Signal             : 78%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 1 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 2                 : c2:07:1d:8f:06:be
+         Signal             : 65%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 6 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 3                 : 9e:ba:5f:2f:81:1e
+         Signal             : 78%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 11 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 4                 : 9e:ba:5f:2f:8b:18
+         Signal             : 83%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 1 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 5                 : 9e:ba:5f:2f:81:91
+         Signal             : 83%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 6                 : 9e:ba:5f:2f:81:54
+         Signal             : 31%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 6 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 7                 : c2:07:1d:8f:06:bf
+         Signal             : 40%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 157 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 8                 : 9e:ba:5f:2f:97:b5
+         Signal             : 31%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 40 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 9                 : c2:07:1d:8f:18:28
+         Signal             : 70%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 11 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 10                 : c2:07:1d:8f:06:c6
+         Signal             : 62%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 11 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 11                 : 9e:ba:5f:2f:81:90
+         Signal             : 81%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 1 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 12                 : 9e:ba:5f:2f:8b:25
+         Signal             : 43%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 13                 : c2:07:1d:8f:18:29
+         Signal             : 46%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 14                 : 9e:ba:5f:2f:97:b4
+         Signal             : 40%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 6 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 15                 : c2:07:1d:8e:ff:d3
+         Signal             : 72%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 16                 : 9e:ba:5f:2f:81:1f
+         Signal             : 53%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 17                 : 9e:ba:5f:2f:8b:19
+         Signal             : 70%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+
+SSID 2 : OTIZ TV
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+    BSSID 1                 : a2:ba:5f:2f:81:90
+         Signal             : 83%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 1 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+
+SSID 3 : OTIZ Resident
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+    BSSID 1                 : bc:07:1d:8f:06:48
+         Signal             : 31%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 1 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 2                 : bc:07:1d:8f:16:cb
+         Signal             : 20%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 3                 : 98:ba:5f:2f:97:b4
+         Signal             : 70%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 6 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 4                 : 98:ba:5f:2f:81:12
+         Signal             : 29%  
+         Radio type         : 802.11n
+         Band               : 2.4 GHz
+         Channel            : 6 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 1 2 5.5 11
+         Other rates (Mbps) : 6 9 12 18 24 36 48 54
+    BSSID 5                 : 98:ba:5f:2f:81:1f
+         Signal             : 60%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 6                 : bc:07:1d:8f:06:bf
+         Signal             : 40%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 157 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+
+SSID 4 : 
+    Network type            : Infrastructure
+    Authentication          : WPA2-Personal
+    Encryption              : CCMP 
+    BSSID 1                 : a6:ba:5f:2f:81:fb
+         Signal             : 20%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+    BSSID 2                 : a6:ba:5f:2f:8b:19
+         Signal             : 72%  
+         Radio type         : 802.11ac
+         Band               : 5 GHz
+         Channel            : 149 
+         QoS MSCS Supported    : 0
+         QoS Map Supported     : 0
+         Basic rates (Mbps) : 6 12 24
+         Other rates (Mbps) : 9 18 36 48 54
+

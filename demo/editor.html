@@ -1,266 +1,135 @@
-<!-- /demo/editor.html -->
-<!DOCTYPE html>
+<!-- File: demo/editor.html -->
+<!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>IndoorMap Nodes Editor</title>
-  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet"/>
+  <title>IndoorMap – Nodes/POIs Editor</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"/>
   <style>
-    :root{ --ui: #0f172a; --ui2:#111827; --acc:#2563eb; --ok:#16a34a; --warn:#f59e0b; --bg:#0b1020; }
-    *{ box-sizing:border-box; }
-    body{ margin:0; font-family: ui-sans-serif,system-ui; color:#e5e7eb; background:#0a0f1f; }
-    .app{ display:grid; grid-template-columns: 360px 1fr; height:100vh; }
-    .panel{ background:linear-gradient(180deg,#0e152a,#0b1226); border-right:1px solid #1f2937; padding:14px; overflow:auto; }
-    .panel h2{ margin:6px 0 10px; font-size:16px; color:#cbd5e1; }
-    .panel label{ font-size:12px; color:#93a3b8; display:block; margin-top:10px; }
-    .panel input,.panel select{ width:100%; padding:8px 10px; background:#0a1224; border:1px solid #28344a; border-radius:8px; color:#e5e7eb; outline:none; }
-    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
-    .btn{ display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border-radius:10px; border:1px solid #2a3650; background:#101a33; color:#e5e7eb; cursor:pointer; }
-    .btn.primary{ background:#1b2a55; border-color:#2c4ea3; }
-    .btn.danger{ background:#3b0f16; border-color:#7f1d1d; }
-    .btn.ok{ background:#0f3320; border-color:#14532d; }
-    .btn:disabled{ opacity:.5; cursor:not-allowed; }
-    .group{ margin:10px 0 14px; padding:10px; border:1px dashed #243044; border-radius:10px; }
-    #map{ position:relative; }
-    #map, .map{ width:100%; height:100%; }
-    .list{ max-height:200px; overflow:auto; border:1px solid #23324a; border-radius:8px; }
-    .item{ font-size:12px; padding:6px 8px; border-bottom:1px solid #1e2a40; cursor:pointer; }
-    .item:hover{ background:#0f1730; }
-    .item.sel{ background:#172554; }
-    .hint{ font-size:12px; color:#94a3b8; }
-    .pill{ font-size:11px; border-radius:999px; padding:1px 8px; background:#0f1b37; border:1px solid #24355f; margin-left:6px; }
+    html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,TH Sarabun New,Noto Sans Thai;}
+    #app{display:grid;grid-template-columns:360px 1fr;height:100%;}
+    #sidebar{overflow:auto;background:#0f172a;color:#e2e8f0}
+    .panel{padding:10px;border-bottom:1px solid #334155}
+    h2{font-size:16px;margin:6px 0 10px;font-weight:700}
+    label{display:block;font-size:12px;color:#cbd5e1;margin-top:8px}
+    input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #475569;background:#0b1220;color:#e2e8f0}
+    textarea{min-height:64px;resize:vertical}
+    .row{display:flex;gap:8px}
+    .row>div{flex:1}
+    button{padding:8px 10px;border-radius:8px;border:1px solid #475569;background:#1e293b;color:#e5e7eb;cursor:pointer}
+    button.primary{background:#2563eb;border-color:#1d4ed8}
+    button.danger{background:#b91c1c;border-color:#7f1d1d}
+    .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .chip{padding:4px 10px;border-radius:999px;border:1px solid #475569;background:#0b1220;cursor:pointer}
+    .chip.active{background:#0ea5e9;border-color:#0284c7}
+    .list{max-height:180px;overflow:auto;border:1px solid #334155;border-radius:8px;margin-top:8px}
+    .item{padding:6px 8px;border-bottom:1px dashed #334155;cursor:pointer}
+    .item.active{background:#0b1220}
+    #map{width:100%;height:100%}
+    .legend{display:flex;gap:10px;align-items:center;font-size:12px}
+    .dot{display:inline-block;width:10px;height:10px;border-radius:50%}
+    .toast{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:8px 12px;border-radius:8px;z-index:9999}
+    .muted{color:#94a3b8;font-size:12px}
   </style>
 </head>
 <body>
-<div class="app">
-  <div class="panel">
-    <h2>Nodes Editor</h2>
-    <div class="group">
+<div id="app">
+  <aside id="sidebar">
+    <div class="panel">
+      <h2>ไฟล์ข้อมูล</h2>
       <div class="row">
-        <button id="btnLoadServer" class="btn">โหลดจากเซิร์ฟเวอร์</button>
-        <label class="btn"><input id="filePick" type="file" accept=".geojson,application/geo+json,application/json" hidden/>นำเข้าไฟล์…</label>
+        <button id="btn-load-pois">โหลดจากเซิร์ฟเวอร์</button>
+        <button id="btn-import-pois">นำเข้าไฟล์…</button>
       </div>
-      <div class="row" style="margin-top:8px">
-        <button id="btnExport" class="btn ok" disabled>Export .geojson</button>
-        <a id="dl" download="nodes.geojson" class="btn" style="text-decoration:none; display:none">ดาวน์โหลด</a>
+      <div class="row" style="margin-top:6px">
+        <button id="btn-save-pois" class="primary">Export .geojson</button>
+        <button id="btn-save-nodes">Export nodes.geojson</button>
       </div>
-      <div class="hint">ปลายทางใช้งานจริง: <code>demo/dist/_tmp/nodes.geojson</code></div>
+      <div class="muted" style="margin-top:6px">ปลายทางไฟล์บนเซิร์ฟเวอร์: <code>demo/dist/_tmp/*.geojson</code></div>
     </div>
 
-    <div class="group">
-      <label>ค้นหา</label>
-      <input id="q" placeholder="เช่น 4A-107 หรือ [door]" />
-      <div class="row" style="margin-top:8px">
-        <select id="typeFilter">
-          <option value="all">ทั้งหมด</option>
-          <option value="door">door</option>
-          <option value="elevator">elevator</option>
-          <option value="stairs">stairs</option>
-          <option value="poi">poi</option>
-          <option value="node">node</option>
+    <div class="panel">
+      <h2>ค้นหา/กรอง</h2>
+      <input id="q" placeholder="ค้นหา: id / ชื่อ / หมวด…"/>
+      <div class="row">
+        <select id="filter-floor">
+          <option value="">ทุกชั้น</option>
         </select>
-        <input id="floorFilter" placeholder="Fxx หรือ ว่าง" />
+        <select id="filter-cat">
+          <option value="">ทุกหมวด</option>
+          <option>door</option><option>lift</option><option>stairs</option>
+          <option>restroom</option><option>cafe</option><option>food</option>
+          <option>office</option><option>classroom</option><option>lab</option><option>printer</option><option>exit</option>
+        </select>
       </div>
-      <div id="list" class="list" style="margin-top:8px"></div>
+      <div class="list" id="result"></div>
     </div>
 
-    <div class="group">
-      <h2 style="display:flex;align-items:center;gap:6px">รายละเอียด<span id="selCount" class="pill">0</span></h2>
-      <label>ID</label>
-      <input id="fId" />
+    <div class="panel">
+      <h2>รายละเอียดโหนด/POI</h2>
       <div class="row">
         <div>
-          <label>Type</label>
-          <select id="fType">
-            <option value="door">door</option>
-            <option value="elevator">elevator</option>
-            <option value="stairs">stairs</option>
+          <label>ID</label><input id="f-id" placeholder="ถ้าเว้นว่าง → สร้าง UUID"/>
+        </div>
+        <div>
+          <label>ชั้น (Floor)</label><input id="f-floor" placeholder="01"/>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>ชนิด (kind / type)</label>
+          <select id="f-kind">
             <option value="poi">poi</option>
-            <option value="node">node</option>
+            <option value="door">door</option>
+            <option value="lift">lift</option>
+            <option value="stairs">stairs</option>
+            <option value="junction">junction</option>
           </select>
         </div>
         <div>
-          <label>Floor</label>
-          <input id="fFloor" placeholder="เช่น 01" />
+          <label>หมวดหมู่ (POI)</label><input id="f-cats" placeholder="คอมมา , เช่น cafe,food"/>
         </div>
       </div>
+      <label>ชื่อ (EN)</label><input id="f-name"/>
+      <label>ชื่อ (TH)</label><input id="f-name-th"/>
+      <label>Aliases</label><input id="f-aliases" placeholder="เช่น N170, ห้อง 4A-107"/>
+      <label>เวลาเปิด (open_hours / JSON หรือ 08:00-17:00)</label><input id="f-hours"/>
+      <label>Metadata (JSON)</label><textarea id="f-meta" placeholder='{"note":"..."}'></textarea>
       <div class="row" style="margin-top:8px">
-        <button id="btnApply" class="btn primary" disabled>บันทึกการแก้ไข</button>
-        <button id="btnDelete" class="btn danger" disabled>ลบโหนด</button>
+        <button id="btn-save-item" class="primary">บันทึกการแก้ไข</button>
+        <button id="btn-del-item" class="danger">ลบ</button>
+        <button id="btn-uuid">สร้าง UUID</button>
       </div>
     </div>
 
-    <div class="group">
-      <h2>เพิ่มโหนดใหม่</h2>
+    <div class="panel">
+      <h2>เพิ่มโหนด/POI</h2>
       <div class="row">
-        <input id="newId" placeholder="ID ใหม่" />
-        <select id="newType">
-          <option value="door">door</option>
-          <option value="elevator">elevator</option>
-          <option value="stairs">stairs</option>
-          <option value="poi">poi</option>
-          <option value="node">node</option>
+        <select id="new-kind">
+          <option value="poi">poi</option><option value="door">door</option>
+          <option value="lift">lift</option><option value="stairs">stairs</option><option value="junction">junction</option>
         </select>
+        <button id="btn-add-point" class="primary">โหมดเพิ่ม: คลิกบนแผนที่</button>
       </div>
-      <div class="row" style="margin-top:8px">
-        <input id="newFloor" placeholder="Floor เช่น 01" />
-        <button id="btnAddMode" class="btn">โหมดเพิ่ม: คลิกบนแผนที่</button>
-      </div>
-      <div class="hint">คลิกบนแผนที่เพื่อวางจุด (โหมดเพิ่ม)</div>
+      <div class="muted" style="margin-top:6px">คลิกแผนที่เพื่อวางจุด, กดปุ่มอีกครั้งเพื่อออกจากโหมด</div>
     </div>
-  </div>
+
+    <div class="panel">
+      <div class="legend">
+        <span><i class="dot" style="background:#2563eb"></i> door</span>
+        <span><i class="dot" style="background:#16a34a"></i> lift</span>
+        <span><i class="dot" style="background:#fb923c"></i> stairs</span>
+        <span><i class="dot" style="background:#94a3b8"></i> poi</span>
+      </div>
+    </div>
+    <div class="panel muted">Auto-save ลง <code>localStorage</code> ทุกครั้งที่แก้ไข</div>
+  </aside>
 
   <div id="map"></div>
 </div>
 
 <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
-<script>
-/** ===== Config & Data ===== **/
-const BASE_URL = new URL('.', location.href).toString().replace(/\/$/, '');
-const TILE_URL = `${BASE_URL}/dist/tiles/{z}/{x}/{y}.pbf`;
-const NODES_URL = `${BASE_URL}/dist/_tmp/nodes.geojson?v=${Date.now()}`;
-
-let fc = { type:'FeatureCollection', features:[] };
-let selectedIdx = -1;
-let addMode = false;
-
-function canonType(t){
-  const s = String(t||'').toLowerCase();
-  if (s.includes('door')) return 'door';
-  if (s.includes('elevator') || s.includes('lift')) return 'elevator';
-  if (s.includes('stair') || s.includes('บันได')) return 'stairs';
-  if (s.includes('poi')) return 'poi';
-  return 'node';
-}
-
-/** ===== Map Setup (แก้ source-layer ให้ถูกต้อง) ===== **/
-const map = new maplibregl.Map({
-  container:'map',
-  style:{
-    version:8,
-    glyphs:"https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-    sources:{
-      vt:{ type:'vector', tiles:[TILE_URL], minzoom:14, maxzoom:22, scheme:'xyz' }
-    },
-    layers:[
-      { id:'bg', type:'background', paint:{ 'background-color':'#eef2f5' } },
-      { id:'rooms-fill', type:'fill',   source:'vt', 'source-layer':'rooms',
-        paint:{ 'fill-color':'#cbd5e1', 'fill-opacity':0.45 } },
-      { id:'features-line', type:'line', source:'vt', 'source-layer':'features',
-        paint:{ 'line-color':'#64748b', 'line-width':1 } }
-    ]
-  },
-  center:[100.493,13.756], zoom:18
-});
-map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
-
-map.on('load', () => {
-  map.addSource('nodes', { type:'geojson', data: fc });
-  map.addLayer({
-    id:'nodes-pt',
-    type:'circle',
-    source:'nodes',
-    paint:{
-      'circle-radius': ['interpolate',['linear'],['zoom'],17,2.2,19,3.2,21,4.0],
-      'circle-stroke-color':'#fff','circle-stroke-width':1,
-      'circle-color': ['match',['get','_canon'],'door','#2563eb','elevator','#16a34a','stairs','#fb923c','poi','#a855f7','#94a3b8']
-    }
-  });
-  refresh();
-});
-
-/** ===== UI wiring (เพิ่ม fitBounds หลังโหลด) ===== **/
-const $ = (id)=>document.getElementById(id);
-
-$('btnLoadServer').onclick = async ()=>{
-  try{
-    const res = await fetch(NODES_URL, {cache:'no-store'});
-    if(!res.ok) throw new Error(res.status);
-    fc = await res.json();
-    normalize();
-    refresh();
-    // ซูมเข้าหาโหนด
-    if (fc.features.length){
-      const xs = fc.features.map(f=>f.geometry.coordinates[0]);
-      const ys = fc.features.map(f=>f.geometry.coordinates[1]);
-      const minX = Math.min(...xs), maxX = Math.max(...xs);
-      const minY = Math.min(...ys), maxY = Math.max(...ys);
-      map.fitBounds([[minX,minY],[maxX,maxY]], {padding:80, duration:600});
-    }
-  }catch(err){ alert('โหลดจากเซิร์ฟเวอร์ไม่สำเร็จ: '+err); }
-};
-
-$('filePick').onchange = async (e)=>{
-  const f = e.target.files?.[0]; if(!f) return;
-  fc = JSON.parse(await f.text());
-  normalize(); refresh();
-  if (fc.features.length){
-    const xs = fc.features.map(f=>f.geometry.coordinates[0]);
-    const ys = fc.features.map(f=>f.geometry.coordinates[1]);
-    map.fitBounds([[Math.min(...xs),Math.min(...ys)],[Math.max(...xs),Math.max(...ys)]], {padding:80, duration:600});
-  }
-};
-
-$('btnExport').onclick = ()=>{
-  const blob = new Blob([JSON.stringify(fc, null, 2)], {type:'application/geo+json'});
-  const url = URL.createObjectURL(blob); const a = $('dl'); a.href = url; a.style.display='inline-flex'; a.click();
-  setTimeout(()=>URL.revokeObjectURL(url), 2000);
-};
-
-$('btnApply').onclick = ()=>{
-  if(selectedIdx<0) return;
-  const f = fc.features[selectedIdx];
-  f.properties.id = $('fId').value.trim();
-  f.properties.type = canonType($('fType').value);
-  f.properties.floor = $('fFloor').value.trim();
-  f.properties._canon = f.properties.type;
-  refresh();
-};
-
-$('btnDelete').onclick = ()=>{ if(selectedIdx<0) return; fc.features.splice(selectedIdx,1); selectedIdx=-1; refresh(); };
-$('btnAddMode').onclick = ()=>{ addMode=!addMode; toggleAddBtn(); };
-$('q').oninput = refreshList; $('typeFilter').onchange = refreshList; $('floorFilter').oninput = refreshList;
-
-map.on('click', (e)=>{
-  if(!addMode) return;
-  const id = $('newId').value.trim(); const floor = $('newFloor').value.trim();
-  const typ = canonType($('newType').value);
-  if(!id || !floor){ alert('กรอก ID และ Floor ก่อน'); return; }
-  fc.features.push({ type:'Feature', properties:{ id, floor, type:typ, _canon:typ }, geometry:{ type:'Point', coordinates:[e.lngLat.lng, e.lngLat.lat] } });
-  refresh(); addMode=false; toggleAddBtn();
-});
-map.on('mousemove', ()=>{ map.getCanvas().style.cursor = addMode ? 'crosshair' : 'default'; });
-
-/** ===== Helpers ===== **/
-function normalize(){
-  fc.features = (fc.features||[])
-    .filter(f => f && f.geometry && f.geometry.type==='Point')
-    .map(f => {
-      const p = f.properties||{}; const t = canonType(p.type);
-      return { type:'Feature', properties:{ id:String(p.id||''), floor:String(p.floor||''), type:t, _canon:t },
-               geometry:{ type:'Point', coordinates:[+f.geometry.coordinates[0], +f.geometry.coordinates[1]] } };
-    });
-}
-
-function refresh(){
-  if(map.getSource('nodes')) map.getSource('nodes').setData(fc);
-  renderList(); $('btnExport').disabled = fc.features.length===0;
-}
-function toggleAddBtn(){ const b=$('btnAddMode'); b.classList.toggle('ok', addMode); b.textContent = addMode ? 'กำลังเพิ่ม: คลิกแผนที่เพื่อวาง' : 'โหมดเพิ่ม: คลิกบนแผนที่'; }
-function renderList(){
-  const box=$('list'), q=$('q').value.trim().toLowerCase(), tf=$('typeFilter').value, ff=$('floorFilter').value.trim();
-  const view = fc.features.map((f,i)=>({i,p:f.properties}))
-    .filter(r=> (tf==='all'||r.p._canon===tf) && (!ff || r.p.floor===ff) && (`[${r.p._canon}] ${r.p.id} (F${r.p.floor})`.toLowerCase().includes(q)))
-    .sort((a,b)=> (a.p.floor===b.p.floor)?a.p.id.localeCompare(b.p.id):a.p.floor.localeCompare(b.p.floor));
-  box.innerHTML = view.map(r=>`<div class="item ${r.i===selectedIdx?'sel':''}" data-i="${r.i}">[${r.p._canon}] ${r.p.id} (F${r.p.floor})</div>`).join('');
-  box.querySelectorAll('.item').forEach(el=>{ el.onclick=()=>{ selectedIdx=+el.dataset.i; fillForm(); renderList(); flyToSelected(); }; });
-  $('selCount').textContent = String(fc.features.length);
-  const hasSel = selectedIdx>=0; $('btnApply').disabled=!hasSel; $('btnDelete').disabled=!hasSel;
-}
-function fillForm(){ if(selectedIdx<0){$('fId').value='';$('fFloor').value='';return;} const p=fc.features[selectedIdx].properties; $('fId').value=p.id||''; $('fType').value=p._canon||'node'; $('fFloor').value=p.floor||''; }
-function flyToSelected(){ if(selectedIdx<0) return; const [lng,lat]=fc.features[selectedIdx].geometry.coordinates; map.easeTo({center:[lng,lat], zoom:20, duration:600}); }
-function refreshList(){ renderList(); }
-</script>
+<script type="module" src="./js/editor.js"></script>
 </body>
 </html>
