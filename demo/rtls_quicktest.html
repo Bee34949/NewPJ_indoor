@@ -1,0 +1,94 @@
+<!-- file: rtls_quicktest.html -->
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <title>RTLS Quick Test (Inverse Signature Lookup)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:16px;line-height:1.4;}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    textarea{width:520px;height:200px}
+    pre{background:#f6f7f8;padding:10px;border-radius:8px;overflow:auto;max-width:520px}
+    button{padding:10px 14px;border-radius:8px;border:1px solid #ddd;background:#fff;cursor:pointer}
+    .tag{display:inline-block;padding:2px 6px;border-radius:6px;border:1px solid #ddd;margin-left:6px;font-size:12px}
+  </style>
+</head>
+<body>
+  <h2>RTLS Quick Test <span class="tag">offline</span></h2>
+  <p>1) เบราว์เซอร์โหลด <code>signatures.json</code> ของชุด <em>B1-F06</em> แล้ว<br>
+     2) วางสแกน Wi-Fi ปัจจุบันในกล่องซ้าย (รูปแบบ <code>{ "bssid": -65, ... }</code>) แล้วกด <b>Locate</b></p>
+
+  <div class="row">
+    <div>
+      <h3>Scan JSON (paste)</h3>
+      <textarea id="ta" spellcheck="false" placeholder='{"80:ea:96:ee:6b:09": -58, "00:78:88:07:17:5f": -57, ...}'></textarea><br>
+      <button id="btn">Locate</button>
+      <label style="margin-left:8px"><input type="checkbox" id="chkFloor"> lock floor</label>
+      <input id="floor" value="06" size="4" />
+    </div>
+    <div>
+      <h3>Result</h3>
+      <pre id="out">Waiting...</pre>
+    </div>
+  </div>
+
+  <script>
+  // ---------- Loader ----------
+  let SIG=null;
+  fetch('./signatures.json', {cache:'no-store'})
+    .then(r=>r.json()).then(sig=>{ SIG=sig; log(`signatures loaded: dataset=${sig.dataset}, dim=${sig.dim}, points=${sig.points.length}`); })
+    .catch(e=>log('load signatures error: '+e));
+
+  const FILL = -100;
+  function log(s){ document.getElementById('out').textContent = String(s); }
+  function nb(b){ return String(b||'').trim().toLowerCase().replace(/-/g,':'); }
+
+  // ---------- Vectorization / Distance ----------
+  function vectorize(sig, scan){
+    const M=sig.dim, ap=sig.ap_dict, w=sig.weights_sqrt;
+    const X=new Float32Array(M).fill(FILL);
+    for(const [b,r] of Object.entries(scan)){ const j=ap[nb(b)]; if(j!=null) X[j]=+r; }
+    for(let j=0;j<M;j++) X[j]*=w[j]; // pre-scale
+    return X;
+  }
+  function prescalePoint(sig, p){
+    const M=sig.dim, ap=sig.ap_dict, w=sig.weights_sqrt, V=new Float32Array(M).fill(FILL);
+    for(const [b,r] of Object.entries(p.rssi||{})){ const j=ap[nb(b)]; if(j!=null) V[j]=+r; }
+    for(let j=0;j<M;j++) V[j]*=w[j];
+    return V;
+  }
+  function l2(a,b){ let s=0; for(let i=0;i<a.length;i++){ const d=a[i]-b[i]; s+=d*d; } return Math.sqrt(s); }
+
+  // ---------- Locate ----------
+  function locateOffline(sig, scan, {k=3, floorHint=null}={}){
+    if(!sig || !sig.points?.length) throw new Error('signatures not ready');
+    const X = vectorize(sig, scan);
+    const cand=[];
+    for(const p of sig.points){
+      if(floorHint && String(p.floor)!==String(floorHint)) continue;
+      const S = prescalePoint(sig, p);
+      cand.push({ d:l2(X,S), p });
+    }
+    if(!cand.length) return null;
+    cand.sort((a,b)=>a.d-b.d);
+    const top=cand.slice(0,Math.min(k,cand.length));
+    let wx=0,wy=0,ws=0;
+    for(const {d,p} of top){ const w=1/(d+1e-6); wx+=p.lon*w; wy+=p.lat*w; ws+=w; }
+    return { lon:wx/ws, lat:wy/ws, floor:top[0].p.floor, neighbors:top.map(({d,p})=>({id:p.id,dist:+d.toFixed(3),lon:p.lon,lat:p.lat,floor:p.floor})) };
+  }
+
+  // ---------- UI ----------
+  document.getElementById('btn').addEventListener('click', ()=>{
+    if(!SIG){ log('signatures not loaded'); return; }
+    let scan={};
+    try{ scan = JSON.parse(document.getElementById('ta').value || '{}'); }
+    catch(e){ log('bad JSON: '+e); return; }
+    const lock = document.getElementById('chkFloor').checked ? (document.getElementById('floor').value||null) : null;
+    const est = locateOffline(SIG, scan, {k:3, floorHint: lock});
+    if(!est){ log('no candidates (check scan/floor)'); return; }
+    log(JSON.stringify(est, null, 2));
+  });
+  </script>
+</body>
+</html>

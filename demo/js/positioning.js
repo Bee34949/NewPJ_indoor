@@ -1,9 +1,6 @@
-// ============================================================================
+// ============================
 // File: demo/js/positioning.js
-// Minimal positioning abstraction + blue dot overlay + simulator + WiFi stub.
-// ============================================================================
-
-/* WHY: กั้นขอบเขต "วิธีระบุตำแหน่ง" ออกจาก UI/แผนที่ ให้สลับ provider ได้ทีหลัง */
+// ============================
 
 export class EventEmitter {
   constructor(){ this._ev = new Map(); }
@@ -12,87 +9,93 @@ export class EventEmitter {
   emit(k, v){ (this._ev.get(k)||[]).forEach(fn=>fn(v)); }
 }
 
-export const uuidv4 = () =>
-  (crypto?.randomUUID?.() ?? 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{
-    const r = Math.random()*16|0, v = c==='x'?r:(r&0x3|0x8); return v.toString(16);
-  }));
-
-// ---- Interface --------------------------------------------------------------
 export class PositionProvider extends EventEmitter {
   constructor(opts={}){ super(); this.opts=opts; this.active=false; }
   async start(){ this.active=true; this.emit('status', {state:'starting'}); }
   async stop(){ this.active=false; this.emit('status', {state:'stopped'}); }
-  // emit samples:
-  // this.emit('position', {lng,lat,accuracy: m, ts})
-  // this.emit('heading', {deg, ts})
-  // this.emit('floor', {floor})
 }
 
-// ---- Simulator (for UI bring-up) -------------------------------------------
-export class SimulatedProvider extends PositionProvider {
-  constructor(pathGeoJSON, opts={speed:1.2, loop:true, follow:true}) {
-    super(opts);
-    this.path = (pathGeoJSON?.coordinates || []);
-    this.i = 0; this.timer = null;
-  }
-  async start(){
-    await super.start();
-    if (!this.path.length){ this.emit('error',{msg:'sim: empty path'}); return; }
-    const dt = 300; // ms
-    this.timer = setInterval(()=>{
-      if(!this.active) return;
-      const [lng,lat,floor] = this.path[this.i];
-      const [lng2,lat2] = this.path[(this.i+1)%this.path.length];
-      const hdg = Math.atan2(lng2-lng, lat2-lat) * 180/Math.PI; // approx
-      this.emit('position', {lng,lat,accuracy:2.5, ts:Date.now()});
-      if (!Number.isNaN(hdg)) this.emit('heading', {deg:(hdg+360)%360, ts:Date.now()});
-      if (floor!=null) this.emit('floor',{floor:String(floor)});
-      this.i = (this.i+1) % this.path.length;
-      if (this.i===0 && !this.opts.loop) this.stop();
-    }, dt);
-    this.emit('status',{state:'running'});
-  }
-  async stop(){ clearInterval(this.timer); await super.stop(); }
-}
+const EPS = 1e-6;
+export const canonBssid = (s) => {
+  if (!s) return '';
+  const hex = String(s).toLowerCase().replace(/[^0-9a-f]/g,'');
+  return hex.slice(0,12);
+};
 
-// ---- WiFi Fingerprint (stub) -----------------------------------------------
+// ---- WiFi Fingerprint (kNN)
 export class WiFiFingerprintProvider extends PositionProvider {
-  constructor(model, opts={k:5, method:'wknn'}){ super(opts); this.model=model||{anchors:[], samples:[]}; }
-  async start(){ await super.start(); this.emit('status',{state:'idle'}); }
-  // observation = [{bssid, rssi}, ...]
-  predict(observation){
-    // TODO: ระยะถัดไป—คำนวณระยะ RSSI distance & weighted centroid หรือ Bayesian
-    return null;
+  /**
+   * model: { signatures: { ap_dict, points:[{lon,lat,floor,rssi:{bssid:rssi}}], weights_sqrt? } }
+   * opts:  { k=4, minOverlap=0.2, minAP=3, floorHint? }
+   */
+  constructor(model, opts={k:4,minOverlap:0.2,minAP:3}) {
+    super(opts);
+    const S = model?.signatures || {};
+    // canonicalize signature keys once
+    const AP = Object.create(null);
+    for (const k of Object.keys(S.ap_dict||{})) AP[canonBssid(k)] = true;
+    const PTS = (S.points||[]).map(p=>{
+      const r = Object.create(null);
+      for (const [b, v] of Object.entries(p.rssi||{})) r[canonBssid(b)] = Number(v);
+      return { id:p.id, lon:Number(p.lon), lat:Number(p.lat), floor:String(p.floor||''), rssi:r };
+    });
+    this.sign = { ap_set: AP, points: PTS };
   }
-  ingestSample({lng,lat,floor, rssis, ts=Date.now()}){
-    this.model.samples.push({lng,lat,floor,rssis,ts});
+  async start(){ await super.start(); this.emit('status',{state:'idle'}); }
+  // observation = [{bssid, rssi}, ...]  (bssid any format)
+  predict(observation){
+    if (!this.active) return null;
+    const { k=4, minOverlap=0.2, minAP=3, floorHint=null } = this.opts || {};
+    const obs = Object.create(null);
+    for (const o of (observation||[])) obs[canonBssid(o.bssid)] = Number(o.rssi);
+    const obsKeys = Object.keys(obs);
+    if (!obsKeys.length) return null;
+
+    let best = [];
+    for (const p of this.sign.points){
+      if (floorHint && p.floor !== String(floorHint)) continue;
+      // overlap set
+      let ol=0, dist=0;
+      for (const b of obsKeys){
+        const v2 = p.rssi[b];
+        if (v2==null) continue;
+        ol++;
+        const d = (obs[b] - v2);
+        dist += d*d;
+      }
+      if (ol < minAP || ol < Math.ceil(minOverlap * obsKeys.length)) continue; // WHY: กัน noise
+      best.push({p, dist: Math.max(dist, EPS), ol});
+    }
+    if (!best.length) return null;
+
+    best.sort((a,b)=>a.dist-b.dist);
+    const top = best.slice(0, Math.max(1, k));
+
+    // weighted centroid
+    let wsum=0, lon=0, lat=0;
+    const floors = Object.create(null);
+    for (const {p, dist} of top){
+      const w = 1.0 / (Math.sqrt(dist) + 1.0); // WHY: ลด bias ระยะ 0
+      wsum += w; lon += p.lon*w; lat += p.lat*w;
+      floors[p.floor] = (floors[p.floor]||0)+w;
+    }
+    lon/=wsum; lat/=wsum;
+
+    // pick floor by max weight (or hint)
+    let floor = floorHint || Object.entries(floors).sort((a,b)=>b[1]-a[1])[0][0] || '';
+    return { lon, lat, floor };
   }
 }
 
-// ---- Map overlay (blue dot + heading) --------------------------------------
-export function attachBlueDot(map, {sourceId='me-src', layerId='me-dot'} = {}){
-  if(!map.getSource(sourceId)){
-    map.addSource(sourceId, { type:'geojson', data:{type:'FeatureCollection', features:[]} });
-    map.addLayer({
-      id: layerId,
-      type: 'symbol',
-      source: sourceId,
-      layout: {
-        'icon-image': 'me-dot',
-        'icon-size': ['interpolate',['linear'],['zoom'],17,0.6,21,1.0],
-        'icon-rotate': ['get','heading'],
-        'icon-rotation-alignment': 'map',
-        'icon-allow-overlap': true
-      }
-    });
-    // runtime-generated icon (circle + cone)
-    const c = document.createElement('canvas'); c.width=c.height=64;
-    const x=32,y=32, ctx=c.getContext('2d');
-    ctx.fillStyle='#3b82f6'; ctx.beginPath(); ctx.arc(x,y,7,0,Math.PI*2); ctx.fill();
-    ctx.globalAlpha=0.35; ctx.beginPath(); ctx.moveTo(x,y); ctx.arc(x,y,22,-0.35,0.35); ctx.closePath(); ctx.fill();
-    map.addImage('me-dot', { width:64, height:64, data:c.getContext('2d').getImageData(0,0,64,64).data, sdf:false }, { pixelRatio:2 });
-  }
-
+// ---- Blue dot overlay + wiring (เหมือนเดิม)
+function ensureSource(map, id){
+  if (map.getSource(id)) return;
+  map.addSource(id, { type:'geojson', data:{ type:'FeatureCollection', features:[] } });
+  if (!map.getLayer(id)) map.addLayer({ id, type:'symbol', source:id, layout:{ 'icon-image':'marker-15' } });
+}
+export function attachBlueDot(map){
+  const sourceId = 'rtls-blue-dot';
+  ensureSource(map, sourceId);
   const update = (lng,lat,heading=0)=>{
     const fc = {
       type:'FeatureCollection',
@@ -102,24 +105,17 @@ export function attachBlueDot(map, {sourceId='me-src', layerId='me-dot'} = {}){
   };
   return update;
 }
-
-// ---- Wiring helper ----------------------------------------------------------
 export function wirePositionToMap(map, provider, {follow=true, onFloor} = {}){
   const update = attachBlueDot(map, {});
   let lastFloor = null;
-  provider.on('position', ({lng,lat})=>{
-    update(lng,lat, _heading);
+  provider.on('position', ({lng,lat,heading})=>{
+    update(lng,lat, heading);
     if(follow) map.easeTo({center:[lng,lat], duration:400});
   });
-  let _heading = 0;
-  provider.on('heading', ({deg})=>{ _heading = deg; });
   provider.on('floor', ({floor})=>{
     if(lastFloor!==floor){ lastFloor=floor; onFloor?.(floor); }
   });
   provider.on('status', s=>console.debug('[pos]', s));
   provider.on('error', e=>console.warn('[pos]', e));
-  return {
-    start: ()=>provider.start(),
-    stop:  ()=>provider.stop(),
-  };
+  return { start: ()=>provider.start(), stop: ()=>provider.stop() };
 }

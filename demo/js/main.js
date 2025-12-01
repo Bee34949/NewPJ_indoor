@@ -4,15 +4,25 @@
 import { FLOORS, ORIGIN, loadNodes, precomputeAdj, buildGlobalGraph, dijkstra, pathToFloorSegments } from './graph.js';
 import { buildDoorIndex, mountDoorUI } from './search.js';
 import { createPlayback } from './playback.js';
-// positioning ถูกคอมเมนต์ไว้ตามที่แจ้ง
-// import { RouteFollowProvider, wirePositionToMap } from './positioning.js';
 import { loadPOIs, buildPOIIndex, mountSearchUI, defaultPOIUrl, poisFromNodes } from './search_index.js';
+import { WiFiFingerprintProvider, wirePositionToMap } from './positioning.js';
 
 const BASE_URL  = new URL('.', location.href).toString().replace(/\/$/, '');
 const TILE_URL  = `${BASE_URL}/dist/tiles/{z}/{x}/{y}.pbf?v=5`;
 const NODES_URL = `${BASE_URL}/dist/_tmp/nodes.geojson?v=${Date.now()}`;
 const POIS_URL  = defaultPOIUrl(BASE_URL);
+const SIG_URL   = `${BASE_URL}/dist/_tmp/signatures.json?v=${Date.now()}`;
 const FLOOR_COST = 8;
+// ⬇️ เพิ่ม: loader ภายในไฟล์นี้แทน
+async function loadSignatures(url) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`signatures fetch ${res.status}`);
+  const sig = await res.json();
+  if (!sig?.ap_dict || !sig?.weights_sqrt || !Array.isArray(sig.points)) {
+    throw new Error('bad signatures.json');
+  }
+  return sig;
+}
 
 const map = new maplibregl.Map({
   container: 'map',
@@ -182,11 +192,14 @@ function applyPreset(name){
   runPathfinder();
 }
 
+// ---- pushScan stub: เรียกได้ตั้งแต่โหลดหน้า (ก่อน signatures พร้อม) ----
+window.__pushScanQ = [];
+window.pushScan = (scan) => { window.__pushScanQ.push(scan); console.log('[pushScan queued]', scan); };
+
 // ----- Boot -----
 map.on('load', async ()=>{
   await ensureNodesLayer(); await waitForSource('nodes_gj');
 
-  // tooltip
   const tip=new maplibregl.Popup({closeButton:false, closeOnClick:false});
   map.on('mousemove','nodes-gj',(e)=>{
     const f=e.features?.[0]; if(!f) return;
@@ -195,12 +208,10 @@ map.on('load', async ()=>{
   });
   map.on('mouseleave','nodes-gj',()=>tip.remove());
 
-  // graph
   const { byFloor } = await loadNodes(NODES_URL);
   BY_FLOOR = byFloor;
   ADJ = precomputeAdj(BY_FLOOR, 6);
 
-  // POIs + index + UI (with chips)
   let pois = await loadPOIs(POIS_URL);
   if (!pois.length) { pois = poisFromNodes(BY_FLOOR); }
   const idx = buildPOIIndex(pois);
@@ -214,4 +225,34 @@ map.on('load', async ()=>{
   mountFloors(); fillSelectors(); mountDoor(); wireUI();
   const badge=document.getElementById('cost-badge'); if(badge) badge.textContent = FLOOR_COST+'m';
   setFloor('ALL');
+
+  // ---- Real-time Wi-Fi Fingerprinting (k-NN) ----
+  try {
+    const SIG = await loadSignatures(SIG_URL);                  // โหลด signatures
+    const provider = new WiFiFingerprintProvider(               // สร้าง provider
+      { signatures: SIG },
+      { k:4, minOverlap:0.2 }
+    );
+    wirePositionToMap(map, provider, { follow:true, onFloor:setFloor });
+    await provider.start();
+
+    // สลับ pushScan เป็นของจริง + ระบายคิว
+const realPush = (scanNow)=>{
+  const n = Object.keys(scanNow||{}).length;
+  console.log('[rtls] pushScan()', n, 'APs');
+  const obs = Object.entries(scanNow||{}).map(([bssid, rssi])=>({ bssid, rssi }));
+  const est = provider.predict(obs);
+  if (!est) { console.warn('[rtls] predict=NULL (overlapต่ำ/ไม่ตรง dataset)'); return; }
+  console.log('[rtls] estimate:', est.lon, est.lat, 'F'+est.floor);
+  provider.emit('position', { lng: est.lon, lat: est.lat, accuracy:3.0, ts:Date.now() });
+};
+
+    window.pushScan = realPush;
+    for (const s of window.__pushScanQ) realPush(s);
+    window.__pushScanQ.length = 0;
+    console.info('[rtls] ready. Use pushScan({...})');
+  } catch (err) {
+    console.warn('[rtls] signatures not loaded:', err);         // WHY: แจ้งให้เห็นว่า fetch ล้มเหลว/404
+  }
+
 });
