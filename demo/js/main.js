@@ -1,28 +1,21 @@
 // ============================
-// File: demo/js/main.js
+// File: demo/js/main.js (signature removed, structure preserved)
 // ============================
 import { FLOORS, ORIGIN, loadNodes, precomputeAdj, buildGlobalGraph, dijkstra, pathToFloorSegments } from './graph.js';
 import { buildDoorIndex, mountDoorUI } from './search.js';
 import { createPlayback } from './playback.js';
 import { loadPOIs, buildPOIIndex, mountSearchUI, defaultPOIUrl, poisFromNodes } from './search_index.js';
-import { WiFiFingerprintProvider, wirePositionToMap } from './positioning.js';
+// [REMOVED] import { WiFiFingerprintProvider, wirePositionToMap } from './positioning.js';
+// [REMOVED] import { ema, snapToGraph, ensureRTLSLayer, drawRTLS } from './rtls_offline.js';
 
 const BASE_URL  = new URL('.', location.href).toString().replace(/\/$/, '');
 const TILE_URL  = `${BASE_URL}/dist/tiles/{z}/{x}/{y}.pbf?v=5`;
 const NODES_URL = `${BASE_URL}/dist/_tmp/nodes.geojson?v=${Date.now()}`;
 const POIS_URL  = defaultPOIUrl(BASE_URL);
-const SIG_URL   = `${BASE_URL}/dist/_tmp/signatures.json?v=${Date.now()}`;
+// [REMOVED] const SIG_URL   = `${BASE_URL}/dist/_tmp/signatures.json?v=${Date.now()}`;
 const FLOOR_COST = 8;
-// ⬇️ เพิ่ม: loader ภายในไฟล์นี้แทน
-async function loadSignatures(url) {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`signatures fetch ${res.status}`);
-  const sig = await res.json();
-  if (!sig?.ap_dict || !sig?.weights_sqrt || !Array.isArray(sig.points)) {
-    throw new Error('bad signatures.json');
-  }
-  return sig;
-}
+
+// [REMOVED] async function loadSignatures(url) { /* signatures removed */ }
 
 const map = new maplibregl.Map({
   container: 'map',
@@ -49,18 +42,37 @@ const map = new maplibregl.Map({
 });
 map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
 
-// ----- State / HUD / Playback -----
+// ---------- helpers ----------
+const normBssid = (b) => String(b||'')
+  .toLowerCase()
+  .replace(/\u200b|\u200c|\s/g,'')
+  .replace(/-/g,':');
+
+function knownUnknown(SIG, obs) {
+  const known = [], unknown = [];
+  for (const {bssid,rssi} of obs) {
+    const k = normBssid(bssid);
+    if (SIG?.ap_dict && (k in SIG.ap_dict)) known.push({bssid:k, rssi});
+    else unknown.push({bssid:k, rssi});
+  }
+  return { known, unknown };
+}
+
+function fallbackByAPCentroid(SIG, knownObs) {
+  return null; // signatures removed
+}
+
+// ---------- rest of original boot / UI ----------
 let BY_FLOOR = {};
 let ADJ = {};
 let DOOR_IDX = null;
-
 const HUD = {
   nodes: document.getElementById('hud-nodes'),
   segs:  document.getElementById('hud-segs'),
   fps:   document.getElementById('hud-fps')
 };
 let lastFpsTs=0, frames=0;
-(function tick(ts){ frames++; if(!lastFpsTs) lastFpsTs=ts; if(ts-lastFpsTs>1000){ HUD.fps && (HUD.fps.textContent='fps '+frames); frames=0; lastFpsTs=ts; } requestAnimationFrame(tick); })(0);
+(function tick(ts){ frames++; if(!lastFpsTs)lastFpsTs=ts; if(ts-lastFpsTs>1000){ HUD.fps && (HUD.fps.textContent='fps '+frames); frames=0; lastFpsTs=ts; } requestAnimationFrame(tick); })(0);
 
 const PB = createPlayback(map);
 PB.onFloorChange((floor, dir)=>{ PB.toast(`${dir==='up'?'ขึ้น':'ลง'}ชั้น ${floor}`, 800); });
@@ -94,36 +106,71 @@ function fillSelectors(){
   s.innerHTML = html; g.innerHTML = html;
 }
 
-// ----- Nodes layer -----
 async function ensureNodesLayer(){
-  const srcId = 'nodes_gj'; if (map.getSource(srcId)) return;
+  const srcId = 'nodes_gj';
+  if (map.getSource(srcId)) return;
+
   const { fc } = await loadNodes(NODES_URL);
-  const filtered = { type:'FeatureCollection', features:(fc.features||[]).filter(f=>{
-    const t=String(f.properties?.type||'').toLowerCase();
-    return t.includes('door')||t.includes('elevator')||t.includes('lift')||t.includes('stair')||t.includes('บันได');
-  })};
+
+  // รวม door/elevator/stair + “ทางเดิน” (walk/corridor/junction/path/hall)
+  const filtered = {
+    type: 'FeatureCollection',
+    features: (fc.features || []).filter(f => {
+      const t = String(f.properties?.type || '').toLowerCase();
+      return (
+        t.includes('door') || t.includes('elevator') || t.includes('lift') ||
+        t.includes('stair') || t.includes('บันได') ||
+        t.includes('walk') || t.includes('corridor') ||
+        t.includes('junction') || t.includes('path') || t.includes('hall')
+      );
+    })
+  };
+
   map.addSource(srcId, { type:'geojson', data: filtered });
+
   map.addLayer({
-    id:'nodes-gj', type:'circle', source:srcId, minzoom:12,
-    paint:{
-      'circle-radius':['interpolate',['linear'],['zoom'],17,2.2,19,3.2,21,4.0],
-      'circle-color':[
+    id: 'nodes-gj',
+    type: 'circle',
+    source: srcId,
+    minzoom: 12,
+    paint: {
+      'circle-radius': ['interpolate',['linear'],['zoom'],17,2.2,19,3.2,21,4.0],
+      'circle-color': [
         'case',
         ['to-boolean',['index-of','door',['downcase',['get','type']]]],'#2563eb',
         ['any',
           ['to-boolean',['index-of','elevator',['downcase',['get','type']]]],
           ['to-boolean',['index-of','lift',['downcase',['get','type']]]]
-        ],'#16a34a',
+        ], '#16a34a',
         ['any',
           ['to-boolean',['index-of','stair',['downcase',['get','type']]]],
           ['to-boolean',['index-of','บันได',['downcase',['get','type']]]]
-        ],'#fb923c',
+        ], '#fb923c',
+        ['any',
+          ['to-boolean',['index-of','walk',['downcase',['get','type']]]],
+          ['to-boolean',['index-of','corridor',['downcase',['get','type']]]],
+          ['to-boolean',['index-of','path',['downcase',['get','type']]]],
+          ['to-boolean',['index-of','junction',['downcase',['get','type']]]],
+          ['to-boolean',['index-of','hall',['downcase',['get','type']]]]
+        ], '#9ca3af',
         '#111827'
       ],
-      'circle-stroke-color':'#fff','circle-stroke-width':1
+      'circle-stroke-color': '#fff',
+      'circle-stroke-width': 1
     }
   });
+
+  const tip = new maplibregl.Popup({ closeButton:false, closeOnClick:false });
+  map.on('mousemove','nodes-gj',(e)=>{
+    const f=e.features?.[0]; if(!f) return;
+    const p=f.properties||{};
+    tip.setLngLat(e.lngLat)
+       .setHTML(`<div style="font:12px ui-sans-serif"><strong>[${(p.type||'').toLowerCase()}]</strong> ${p.name||p.id||''} (F${p.floor||''})</div>`)
+       .addTo(map);
+  });
+  map.on('mouseleave','nodes-gj',()=>tip.remove());
 }
+
 function waitForSource(id){
   return new Promise(resolve=>{
     if (map.getSource(id)) return resolve();
@@ -192,13 +239,15 @@ function applyPreset(name){
   runPathfinder();
 }
 
-// ---- pushScan stub: เรียกได้ตั้งแต่โหลดหน้า (ก่อน signatures พร้อม) ----
+// ---- pushScan stub (kept but inert) ----
 window.__pushScanQ = [];
-window.pushScan = (scan) => { window.__pushScanQ.push(scan); console.log('[pushScan queued]', scan); };
+window.pushScan = (scan) => { /* inert: signatures removed */ console.log('[pushScan ignored]', scan); };
 
 // ----- Boot -----
 map.on('load', async ()=>{
   await ensureNodesLayer(); await waitForSource('nodes_gj');
+
+  // [REMOVED] ensureRTLSLayer(map);
 
   const tip=new maplibregl.Popup({closeButton:false, closeOnClick:false});
   map.on('mousemove','nodes-gj',(e)=>{
@@ -226,33 +275,6 @@ map.on('load', async ()=>{
   const badge=document.getElementById('cost-badge'); if(badge) badge.textContent = FLOOR_COST+'m';
   setFloor('ALL');
 
-  // ---- Real-time Wi-Fi Fingerprinting (k-NN) ----
-  try {
-    const SIG = await loadSignatures(SIG_URL);                  // โหลด signatures
-    const provider = new WiFiFingerprintProvider(               // สร้าง provider
-      { signatures: SIG },
-      { k:4, minOverlap:0.2 }
-    );
-    wirePositionToMap(map, provider, { follow:true, onFloor:setFloor });
-    await provider.start();
-
-    // สลับ pushScan เป็นของจริง + ระบายคิว
-const realPush = (scanNow)=>{
-  const n = Object.keys(scanNow||{}).length;
-  console.log('[rtls] pushScan()', n, 'APs');
-  const obs = Object.entries(scanNow||{}).map(([bssid, rssi])=>({ bssid, rssi }));
-  const est = provider.predict(obs);
-  if (!est) { console.warn('[rtls] predict=NULL (overlapต่ำ/ไม่ตรง dataset)'); return; }
-  console.log('[rtls] estimate:', est.lon, est.lat, 'F'+est.floor);
-  provider.emit('position', { lng: est.lon, lat: est.lat, accuracy:3.0, ts:Date.now() });
-};
-
-    window.pushScan = realPush;
-    for (const s of window.__pushScanQ) realPush(s);
-    window.__pushScanQ.length = 0;
-    console.info('[rtls] ready. Use pushScan({...})');
-  } catch (err) {
-    console.warn('[rtls] signatures not loaded:', err);         // WHY: แจ้งให้เห็นว่า fetch ล้มเหลว/404
-  }
-
+  // [REMOVED] Entire RTLS / signatures block
+  console.info('[init] signatures removed; corridor nodes still visible.');
 });
