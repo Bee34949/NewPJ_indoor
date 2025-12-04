@@ -1,21 +1,16 @@
 // ============================
-// File: demo/js/main.js (signature removed, structure preserved)
+// File: demo/js/main.js
 // ============================
 import { FLOORS, ORIGIN, loadNodes, precomputeAdj, buildGlobalGraph, dijkstra, pathToFloorSegments } from './graph.js';
 import { buildDoorIndex, mountDoorUI } from './search.js';
 import { createPlayback } from './playback.js';
 import { loadPOIs, buildPOIIndex, mountSearchUI, defaultPOIUrl, poisFromNodes } from './search_index.js';
-// [REMOVED] import { WiFiFingerprintProvider, wirePositionToMap } from './positioning.js';
-// [REMOVED] import { ema, snapToGraph, ensureRTLSLayer, drawRTLS } from './rtls_offline.js';
 
 const BASE_URL  = new URL('.', location.href).toString().replace(/\/$/, '');
 const TILE_URL  = `${BASE_URL}/dist/tiles/{z}/{x}/{y}.pbf?v=5`;
 const NODES_URL = `${BASE_URL}/dist/_tmp/nodes.geojson?v=${Date.now()}`;
 const POIS_URL  = defaultPOIUrl(BASE_URL);
-// [REMOVED] const SIG_URL   = `${BASE_URL}/dist/_tmp/signatures.json?v=${Date.now()}`;
 const FLOOR_COST = 8;
-
-// [REMOVED] async function loadSignatures(url) { /* signatures removed */ }
 
 const map = new maplibregl.Map({
   container: 'map',
@@ -42,27 +37,7 @@ const map = new maplibregl.Map({
 });
 map.addControl(new maplibregl.NavigationControl({showCompass:false}), 'top-right');
 
-// ---------- helpers ----------
-const normBssid = (b) => String(b||'')
-  .toLowerCase()
-  .replace(/\u200b|\u200c|\s/g,'')
-  .replace(/-/g,':');
-
-function knownUnknown(SIG, obs) {
-  const known = [], unknown = [];
-  for (const {bssid,rssi} of obs) {
-    const k = normBssid(bssid);
-    if (SIG?.ap_dict && (k in SIG.ap_dict)) known.push({bssid:k, rssi});
-    else unknown.push({bssid:k, rssi});
-  }
-  return { known, unknown };
-}
-
-function fallbackByAPCentroid(SIG, knownObs) {
-  return null; // signatures removed
-}
-
-// ---------- rest of original boot / UI ----------
+// ---------- state ----------
 let BY_FLOOR = {};
 let ADJ = {};
 let DOOR_IDX = null;
@@ -77,24 +52,23 @@ let lastFpsTs=0, frames=0;
 const PB = createPlayback(map);
 PB.onFloorChange((floor, dir)=>{ PB.toast(`${dir==='up'?'ขึ้น':'ลง'}ชั้น ${floor}`, 800); });
 
-// ----- Floor UI -----
+// ---------- UI ----------
 function mountFloors(){
   const chips=document.getElementById('floor-chips');
   chips.innerHTML = `<button class="chip active" data-floor="ALL">ทุกชั้น</button>` + FLOORS.map(f=>`<button class="chip" data-floor="${f}">${f}</button>`).join('');
   chips.querySelectorAll('.chip').forEach(b=>b.onclick=()=>setFloor(b.dataset.floor));
 }
 function setFloor(floor){
-  const ids=['rooms-fill','rooms-outline','features-line','nodes-gj','pois','route-line','anim-trail','poi-search-pin'].filter(id=>map.getLayer(id));
+  const ids=['rooms-fill','rooms-outline','features-line','nodes-gj','nodes-dup','nodes-dup-count','pois','route-line','anim-trail','poi-search-pin'].filter(id=>map.getLayer(id));
   const flt=(floor==='ALL')?null:['==',['to-string',['get','floor']],floor];
   ids.forEach(id=>map.setFilter(id, flt));
   document.querySelectorAll('#floor-chips .chip').forEach(b=>b.classList.toggle('active',b.dataset.floor===floor));
   PB.setFloor(floor);
 }
-
-// ----- Helpers -----
 const WALKLIKE = ['walk','corridor','junction','path','hall'];
-const canonType = (t) => { const s=String(t||'').toLowerCase(); if(s.includes('door'))return'door'; if(s.includes('elevator')||s.includes('lift'))return'elevator'; if(s.includes('stair')||s.includes('บันได'))return'stairs'; if(s.includes('poi'))return'poi'; return'node'; };
 const isWalklike = (t) => { const s=String(t||'').toLowerCase(); return WALKLIKE.some(w => s.includes(w)); };
+const canonType = (t) => { const s=String(t||'').toLowerCase(); if(s.includes('door'))return'door'; if(s.includes('elevator')||s.includes('lift'))return'elevator'; if(s.includes('stair')||s.includes('บันได'))return'stairs'; if(s.includes('poi'))return'poi'; if(isWalklike(s))return'corridor'; return'node'; };
+
 function fillSelectors(){
   const s = document.getElementById('pf-start');
   const g = document.getElementById('pf-goal');
@@ -106,13 +80,87 @@ function fillSelectors(){
   s.innerHTML = html; g.innerHTML = html;
 }
 
+// ---------- nodes layer + duplicate detection ----------
+function meters(lon1,lat1,lon2,lat2){
+  const R=6378137, x=(lon2-lon1)*(Math.PI/180)*R*Math.cos(((lat1+lat2)/2)*(Math.PI/180)), y=(lat2-lat1)*(Math.PI/180)*R;
+  return Math.hypot(x,y);
+}
+function dedupCorridorNodes(fc, thresholdM=0.6){
+  // why: flag corridor nodes that are spatially duplicated (<= thresholdM) on same floor
+  const feats = (fc.features||[]).map(f=>({ ...f, properties: { ...(f.properties||{}) } }));
+  const corridors = [];
+  for(const f of feats){
+    const t=String(f.properties?.type||'').toLowerCase();
+    if(f.geometry?.type!=='Point') continue;
+    if(isWalklike(t)) corridors.push(f);
+  }
+  // grid index
+  const cell = thresholdM / 1.5; // tighter grid
+  const idx = new Map(); // key -> array of feature indices
+  const keyOf = (lon,lat,fl) => {
+    const m = 6378137, x = (lon*Math.PI/180)*m, y = (lat*Math.PI/180)*m;
+    const gx = Math.floor(x/cell), gy = Math.floor(y/cell);
+    return `${fl}|${gx}|${gy}`;
+  };
+  corridors.forEach((f,i)=>{
+    const [lon,lat]=f.geometry.coordinates;
+    const key=keyOf(lon,lat, String(f.properties?.floor??''));
+    if(!idx.has(key)) idx.set(key,[]);
+    idx.get(key).push(i);
+  });
+  // neighbors check within 8-neighborhood
+  const groupId = new Array(corridors.length).fill(-1);
+  let g=0;
+  const neighKeys = (lon,lat,fl)=>{
+    const m = 6378137, x = (lon*Math.PI/180)*m, y = (lat*Math.PI/180)*m;
+    const gx = Math.floor(x/cell), gy = Math.floor(y/cell);
+    const out=[];
+    for(let dx=-1;dx<=1;dx++) for(let dy=-1;dy<=1;dy++) out.push(`${fl}|${gx+dx}|${gy+dy}`);
+    return out;
+  };
+  for(let i=0;i<corridors.length;i++){
+    if(groupId[i]!==-1) continue;
+    const A=corridors[i], [alon,alat]=A.geometry.coordinates, fl=String(A.properties?.floor??'');
+    const keys=neighKeys(alon,alat,fl);
+    const bucket = new Set();
+    for(const k of keys){ (idx.get(k)||[]).forEach(j=>bucket.add(j)); }
+    // build group by distance
+    const group=[i];
+    for(const j of bucket){
+      if(j===i||groupId[j]!==-1) continue;
+      const B=corridors[j]; const [blon,blat]=B.geometry.coordinates;
+      if(meters(alon,alat,blon,blat) <= thresholdM) group.push(j);
+    }
+    if(group.length>1){
+      for(const j of group){ groupId[j]=g; }
+      g++;
+    }else{
+      groupId[i]=groupId[i]===-1? -2 : groupId[i]; // mark non-dup
+    }
+  }
+  // annotate features
+  const groupSizes = new Map();
+  groupId.forEach(id=>{ if(id>=0) groupSizes.set(id, (groupSizes.get(id)||0)+1); });
+  corridors.forEach((f,i)=>{
+    const id=groupId[i];
+    if(id>=0){
+      f.properties.dup = true;
+      f.properties.dupGroup = id;
+      f.properties.dupSize = groupSizes.get(id);
+    }else{
+      f.properties.dup = false;
+    }
+  });
+  return { all: feats, corridors, duplicates: corridors.filter(f=>f.properties.dup) };
+}
+
 async function ensureNodesLayer(){
   const srcId = 'nodes_gj';
   if (map.getSource(srcId)) return;
 
   const { fc } = await loadNodes(NODES_URL);
 
-  // รวม door/elevator/stair + “ทางเดิน” (walk/corridor/junction/path/hall)
+  // include door/elevator/stair + corridor types
   const filtered = {
     type: 'FeatureCollection',
     features: (fc.features || []).filter(f => {
@@ -120,14 +168,17 @@ async function ensureNodesLayer(){
       return (
         t.includes('door') || t.includes('elevator') || t.includes('lift') ||
         t.includes('stair') || t.includes('บันได') ||
-        t.includes('walk') || t.includes('corridor') ||
-        t.includes('junction') || t.includes('path') || t.includes('hall')
+        isWalklike(t)
       );
     })
   };
 
-  map.addSource(srcId, { type:'geojson', data: filtered });
+  // detect duplicates for corridor nodes
+  const { all, duplicates } = dedupCorridorNodes(filtered, 0.6);
 
+  map.addSource(srcId, { type:'geojson', data: { type:'FeatureCollection', features: all } });
+
+  // base nodes layer
   map.addLayer({
     id: 'nodes-gj',
     type: 'circle',
@@ -160,15 +211,68 @@ async function ensureNodesLayer(){
     }
   });
 
+  // duplicates layer (highlight)
+  // why: เน้นจุด corridor ที่ซ้อนกันให้เห็นชัด
+  map.addLayer({
+    id: 'nodes-dup',
+    type: 'circle',
+    source: srcId,
+    minzoom: 12,
+    filter: ['==',['get','dup'], true],
+    paint: {
+      'circle-radius': ['interpolate',['linear'],['zoom'],17,3.6,19,4.6,21,6.0],
+      'circle-color': '#ef4444',
+      'circle-stroke-color':'#111',
+      'circle-stroke-width': 1
+    }
+  });
+
+  // label count for duplicates
+  map.addLayer({
+    id: 'nodes-dup-count',
+    type: 'symbol',
+    source: srcId,
+    minzoom: 12,
+    filter: ['all',['==',['get','dup'], true],['>', ['get','dupSize'], 1]],
+    layout: {
+      'text-field': ['to-string',['get','dupSize']],
+      'text-size': 11,
+      'text-offset': [0, 1.0]
+    },
+    paint: { 'text-color':'#ef4444', 'text-halo-color':'#fff','text-halo-width':1 }
+  });
+
+  // tooltip
   const tip = new maplibregl.Popup({ closeButton:false, closeOnClick:false });
   map.on('mousemove','nodes-gj',(e)=>{
     const f=e.features?.[0]; if(!f) return;
     const p=f.properties||{};
+    const dup = p.dup ? ` • dup x${p.dupSize}` : '';
     tip.setLngLat(e.lngLat)
-       .setHTML(`<div style="font:12px ui-sans-serif"><strong>[${(p.type||'').toLowerCase()}]</strong> ${p.name||p.id||''} (F${p.floor||''})</div>`)
+       .setHTML(`<div style="font:12px ui-sans-serif"><strong>[${(p.type||'').toLowerCase()}]</strong> ${p.name||p.id||''} (F${p.floor||''})${dup}</div>`)
        .addTo(map);
   });
   map.on('mouseleave','nodes-gj',()=>tip.remove());
+
+  // small toggle button
+  let btn = document.getElementById('toggle-dup');
+  if(!btn){
+    btn = document.createElement('button');
+    btn.id='toggle-dup';
+    btn.className='chip';
+    btn.style.position='absolute'; btn.style.right='12px'; btn.style.top='8px'; btn.style.zIndex=1000;
+    btn.textContent='Show dup';
+    document.body.appendChild(btn);
+  }
+  let on=false;
+  const apply = ()=> {
+    const vis = on ? 'visible':'none';
+    if(map.getLayer('nodes-dup')) map.setLayoutProperty('nodes-dup','visibility',vis);
+    if(map.getLayer('nodes-dup-count')) map.setLayoutProperty('nodes-dup-count','visibility',vis);
+    btn.textContent = on ? 'Hide dup' : 'Show dup';
+  };
+  btn.onclick=()=>{ on=!on; apply(); };
+  apply(); // start hidden by default
 }
 
 function waitForSource(id){
@@ -179,7 +283,7 @@ function waitForSource(id){
   });
 }
 
-// ----- Pathfinder -----
+// ---------- pathfinder ----------
 function runPathfinder(){
   const sSel=document.getElementById('pf-start').value;
   const gSel=document.getElementById('pf-goal').value;
@@ -209,7 +313,7 @@ function runPathfinder(){
   PB.setRoutePoints(points);
 }
 
-// ----- Door UI / Misc -----
+// ---------- door ui / misc ----------
 function mountDoor(){
   DOOR_IDX = buildDoorIndex(BY_FLOOR);
   mountDoorUI(map, BY_FLOOR, DOOR_IDX);
@@ -239,15 +343,13 @@ function applyPreset(name){
   runPathfinder();
 }
 
-// ---- pushScan stub (kept but inert) ----
+// ---- inert pushScan stub (for compatibility)
 window.__pushScanQ = [];
-window.pushScan = (scan) => { /* inert: signatures removed */ console.log('[pushScan ignored]', scan); };
+window.pushScan = (scan) => { console.log('[pushScan ignored]', scan); };
 
-// ----- Boot -----
+// ---------- boot ----------
 map.on('load', async ()=>{
   await ensureNodesLayer(); await waitForSource('nodes_gj');
-
-  // [REMOVED] ensureRTLSLayer(map);
 
   const tip=new maplibregl.Popup({closeButton:false, closeOnClick:false});
   map.on('mousemove','nodes-gj',(e)=>{
@@ -275,6 +377,5 @@ map.on('load', async ()=>{
   const badge=document.getElementById('cost-badge'); if(badge) badge.textContent = FLOOR_COST+'m';
   setFloor('ALL');
 
-  // [REMOVED] Entire RTLS / signatures block
-  console.info('[init] signatures removed; corridor nodes still visible.');
+  console.info('[init] corridor duplicate highlighting ready');
 });
